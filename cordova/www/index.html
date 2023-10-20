@@ -35,7 +35,7 @@
 
 
         <main id="homepage">
-    <header class="hero-homepage">
+    <header class="hero-homepage" data-module="hero-homepage">
     <div class="container">
         <h1>We<br>design<br>brand<br>odysée</h1>
     </div>
@@ -57,7 +57,7 @@
     <h2 class="tl2">Nos réalisations</h2>
 </header>
 
-        <template class="tpl-content-realisation"><div><div class="content-realisation">
+        <template id="tpl-content-realisation"><div><div class="content-realisation">
     <h1 class="title tl2">${args.title}</h1>
     <time class="date">${args.date}</time>
     <div class="chapo">${args.chapo}</div>
@@ -65,7 +65,7 @@
     <div class="text rte">${args.text}</div>
 </div></div></template>
 
-        <template class="tpl-card-realisation"><div><div class="card-realisation">
+        <template id="tpl-card-realisation"><div><div class="card-realisation">
     <h3 class="tl3">${args.title}</h3>
     <time>${args.date}</time>
     <img src="${args.image}">
@@ -97,55 +97,9 @@
 </main>
 
         <main id="actualites">
-    <div class="container">
-
-        <header class="hero-page">
-    <div class="container">
-        <h1>Compte</h1>
-    </div>
-</header>
-   
-        <form action="">
-            <fieldset>
-                <legend>Personnelles</legend>
-                <div class="field">
-                    <label for="">Nom</label>
-                    <input type="text">
-                </div>
-                <div class="field">
-                    <label for="">Prénom</label>
-                    <input type="text">
-                </div>
-            </fieldset>
-            <input type="submit" value="Envoyer">
-        </form>
-    </div>
-</main>
-
-        <main id="realisations">
-    <div class="container">
-
-        <header class="hero-page">
-    <div class="container">
-        <h1>Nos Dashboard</h1>
-    </div>
-</header>
-
-        <section class="strate-test" data-module="strate-dashboard">
-    <h2>Météo</h2>
-    <img class="cloud" src="" alt="">
-    <div>
-        temperature: <span class="temp"></span>
-    </div>
-</section>
-        
-    </div>
-</main>
-
-        <main id="expertises">
     <header class="hero-page">
     <div class="container">
-        <h1>Nos actualités</h1>
+        <h1>Actualités</h1>
     </div>
 </header>
 
@@ -155,6 +109,31 @@
 
     </ul>
 </section>
+    </div>
+</main>
+
+        <main id="realisations">
+    <header class="hero-page">
+    <div class="container">
+        <h1>Nos Réalisations</h1>
+    </div>
+</header>
+
+    <div class="container">
+       <ul></ul>
+
+    </div>
+</main>
+
+        <main id="expertises">
+    <header class="hero-page">
+    <div class="container">
+        <h1>Notre expertise</h1>
+    </div>
+</header>
+
+    <div class="container">
+       
     </div>
 </main>
 

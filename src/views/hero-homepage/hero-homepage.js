@@ -19,7 +19,13 @@
                 yodelBuffer = audioBuffer;
             });
 
-        playButton.onclick = () => play(yodelBuffer);
+        playButton.onclick = () => {
+            playButton.classList.add('click');
+            playButton.addEventListener('transitionend', () => {
+                playButton.classList.remove('click');
+            })
+            play(yodelBuffer)
+        };
 
         function play(audioBuffer) {
             const source = context.createBufferSource();
@@ -30,7 +36,9 @@
     }
 
     function hero_homepage(el) {
+        
         mp3();
+
 
         this.start = () => {
 

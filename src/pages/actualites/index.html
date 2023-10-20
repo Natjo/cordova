@@ -1,23 +1,9 @@
 <main id="actualites">
-    <div class="container">
+    ${view('hero-page',{
+    'title': "Actualités"
+    })}
 
-        ${view('hero-page',{
-            'title': "Compte"
-        })}
-   
-        <form action="">
-            <fieldset>
-                <legend>Personnelles</legend>
-                <div class="field">
-                    <label for="">Nom</label>
-                    <input type="text">
-                </div>
-                <div class="field">
-                    <label for="">Prénom</label>
-                    <input type="text">
-                </div>
-            </fieldset>
-            <input type="submit" value="Envoyer">
-        </form>
+    <div class="container">
+        ${view('strate-news')}
     </div>
 </main>

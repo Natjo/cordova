@@ -16,7 +16,7 @@ let slug;
 
 const page = (literal, args) => eval("`" + fs.readFileSync(`${__dirname}/src/pages/${literal}/index.html`, "utf8") + "`");
 
-const tpl = (literal, args) => `<template class="tpl-${literal}"><div>${fs.readFileSync(`${__dirname}/src/views/${literal}/${literal}.html`, "utf8")}</div></template>`;
+const tpl = (literal, args) => `<template id="tpl-${literal}"><div>${fs.readFileSync(`${__dirname}/src/views/${literal}/${literal}.html`, "utf8")}</div></template>`;
 
 const view = (literal, args) => eval("`" + fs.readFileSync(`${__dirname}/src/views/${literal}/${literal}.html`, "utf8") + "`");
 
