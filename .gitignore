@@ -71,3 +71,4 @@ web/wp-content/languages/themes/*-backup-*
 
 # Front
 !web/wp-content/themes/default
+node_modules/*
