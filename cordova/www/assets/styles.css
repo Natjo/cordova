@@ -352,8 +352,15 @@ button{
 }.card-news {
    
 }.card-realisation {
-   background-color: pink;
-}#footer {
+   
+}.content-news {
+   
+}.content-realisation {
+   margin-top: 40px;
+}.content-realisation img{
+    width: 100%;
+    margin: 40px 0;
+   }#footer {
     padding-top: 3rem;
     padding-bottom: 3rem;
     background-color: #fff;
@@ -412,9 +419,12 @@ button{
         line-height: 1.4;
         font-weight: 300;
        
+    }.hero-homepage img{
+        width: 30%;
+        margin: 0 auto;
     }.hero-page {
     margin-bottom: 40px;
-    background-color: aliceblue;
+    background-color: var(--color-3);
     padding-top: 20px;
     padding-bottom: 20px;
 }.hero-page h2 {
@@ -444,9 +454,7 @@ button{
     }#nav.active {
         transform: translateX(100%);
         transition: transform .4s ease;
-    }.card-news {
-   
-}.strate-news {
+    }.strate-news {
     padding-top: 3rem;
     padding-bottom: 3rem;
 }.strate-news img {
@@ -477,6 +485,15 @@ button{
         font-style: italic;
     }.strate-newsletter .b{
         font-weight: 900;
+    }.strate-realisation {
+    margin-bottom: 3rem;
+}.strate-realisation ul{
+        display:grid;
+        grid-gap: 1rem;
+    }.strate-realisation img{
+        width: 100%;
+    }.strate-realisation .header {
+        margin-bottom: 3rem;
     }.strate-realisation {
     margin-bottom: 3rem;
 }.strate-realisation ul{

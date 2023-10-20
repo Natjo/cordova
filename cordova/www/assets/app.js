@@ -256,6 +256,30 @@
   window.headernav = headernav;
 })();
 (function () {
+  function mp3() {
+    const URL = 'assets/mp3/applause.wav';
+    const context = new AudioContext();
+    const playButton = document.querySelector('#play');
+    let yodelBuffer;
+    window.fetch(URL).then(response => response.arrayBuffer()).then(arrayBuffer => context.decodeAudioData(arrayBuffer)).then(audioBuffer => {
+      playButton.disabled = false;
+      yodelBuffer = audioBuffer;
+    });
+    playButton.onclick = () => play(yodelBuffer);
+    function play(audioBuffer) {
+      const source = context.createBufferSource();
+      source.buffer = audioBuffer;
+      source.connect(context.destination);
+      source.start();
+    }
+  }
+  function hero_homepage(el) {
+    mp3();
+    this.start = () => {};
+  }
+  window.hero_homepage = hero_homepage;
+})();
+(function () {
   function strate_dashboard(el) {
     this.start = () => {};
     this.onleave = () => {};
@@ -318,23 +342,6 @@
   window.strate_news = strate_news;
 })();
 (function () {
-  function mp3() {
-    const URL = 'assets/mp3/applause.wav';
-    const context = new AudioContext();
-    const playButton = document.querySelector('#play');
-    let yodelBuffer;
-    window.fetch(URL).then(response => response.arrayBuffer()).then(arrayBuffer => context.decodeAudioData(arrayBuffer)).then(audioBuffer => {
-      playButton.disabled = false;
-      yodelBuffer = audioBuffer;
-    });
-    playButton.onclick = () => play(yodelBuffer);
-    function play(audioBuffer) {
-      const source = context.createBufferSource();
-      source.buffer = audioBuffer;
-      source.connect(context.destination);
-      source.start();
-    }
-  }
   function getTemplate(selector, args) {
     const template = selector;
     const clone = template.content.cloneNode(true);
@@ -346,8 +353,6 @@
     return eval("`" + clone.firstElementChild.innerHTML + "`");
   }
   function strate_realisation(el) {
-    mp3();
-    window.sampler();
     const result = el.querySelector('ul');
     const main_wrapper = document.querySelector(".main-wrapper");
     const panel = document.querySelector('.panel');
@@ -363,7 +368,7 @@
           date: item.date,
           image: item.image
         };
-        const card = `<li>${getTemplate1(el.querySelector(".card-realisation"), args)}</li>`;
+        const card = `<li>${getTemplate1(el.querySelector(".tpl-card-realisation"), args)}</li>`;
         result.insertAdjacentHTML('beforeend', card);
       }
       result.querySelectorAll("li").forEach((element, num) => {
@@ -386,7 +391,7 @@
             image: item.image,
             text: item.text
           };
-          const page = getTemplate1(el.querySelector(".page-realisation"), args);
+          const page = getTemplate1(el.querySelector(".tpl-content-realisation"), args);
           panel.querySelector('.panel-content').innerHTML = page;
           panel.classList.add("display");
           main_wrapper.classList.add("hide");
@@ -397,6 +402,13 @@
     this.start = () => {};
   }
   window.strate_realisation = strate_realisation;
+})();
+(function () {
+  function strate_sampler(el) {
+    window.sampler();
+    this.start = () => {};
+  }
+  window.strate_sampler = strate_sampler;
 })();
 const nav = document.querySelector('nav');
 const links = document.querySelectorAll("a");

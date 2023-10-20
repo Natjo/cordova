@@ -1,0 +1,11 @@
+.hero-page {
+    margin-bottom: 40px;
+    background-color: var(--color-3);
+    padding-top: 20px;
+    padding-bottom: 20px;
+ 
+
+    h2 {
+        margin-bottom: 10px;
+    }
+}
