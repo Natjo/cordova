@@ -3,11 +3,9 @@
 
     ul{
         display:grid;
-        grid-gap: 1rem;
+        grid-gap: 2rem;
     }
-    img{
-        width: 100%;
-    }
+
     .header {
         margin-bottom: 3rem;
     }

@@ -351,9 +351,10 @@ button{
     margin-bottom: 2rem;
 }.card-news {
    
-}.card-realisation {
-   
-}.content-news {
+}.card-realisation img{
+      width: 100%;
+      margin-top: 1rem;
+   }.content-news {
    
 }.content-realisation {
    margin-top: 40px;
@@ -495,18 +496,11 @@ button{
     margin-bottom: 3rem;
 }.strate-realisation ul{
         display:grid;
-        grid-gap: 1rem;
-    }.strate-realisation img{
-        width: 100%;
+        grid-gap: 2rem;
     }.strate-realisation .header {
         margin-bottom: 3rem;
-    }.strate-realisation {
+    }.strate-sampler {
     margin-bottom: 3rem;
-}.strate-realisation ul{
-        display:grid;
-        grid-gap: 1rem;
-    }.strate-realisation img{
-        width: 100%;
-    }.strate-realisation .header {
-        margin-bottom: 3rem;
+}.strate-sampler .samplerPads{
+        margin-bottom: 20px;
     }
