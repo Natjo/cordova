@@ -1,0 +1,38 @@
+#footer {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    background-color: #fff;
+    color: #000;
+
+    .container {
+        display: flex;
+        gap: 3rem;
+        flex-direction: column;
+    }
+
+    h3 {
+        font-weight: 800;
+    }
+
+    a {
+        color: #000;
+    }
+
+    .header {
+        a {
+            font-size: 4rem;
+            font-style: italic;
+            font-weight: 900;
+        }
+    }
+
+    hr {
+        margin: 3rem 0;
+        border: none;
+        border-bottom: 1px solid var(--color-8);
+    }
+
+    .logo {
+        filter: invert(1);
+    }
+}

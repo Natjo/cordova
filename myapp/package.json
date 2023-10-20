@@ -1,0 +1,28 @@
+{
+  "name": "builder",
+  "version": "1.0.0",
+  "description": "Build front styles/modules to dev assets",
+  "scripts": {
+    "dev": "node builder.js",
+    "prod": "node builder.js --prod",
+    "webapp": "node builder.js --webapp"
+  },
+  "author": "Martin Jonathan",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
+    "autoprefixer": "^10.0.1",
+    "babel-cli": "^6.0.0",
+    "babel-minify": "^0.5.1",
+    "fs-extra": "^9.0.1",
+    "node-watch": "^0.6.4",
+    "postcss": "^8.0.14",
+    "postcss-custom-media": "7.0.8",
+    "postcss-nested": "^5.0.1",
+    "uglifycss": "^0.0.29"
+  },
+  "dependencies": {
+    "core-js": "^3.6.5"
+  }
+}

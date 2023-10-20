@@ -1,0 +1,73 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+
+# Windows
+ehthumbs.db
+Thumbs.db
+*.com
+*.dll
+*.exe
+*.o
+*.so
+
+# IDE
+*.sublime-project
+*.sublime-workspace
+*.esproj
+*.code-workspace
+codekit-config.json
+.idea
+.vscode
+
+# Docker
+.docker/.env
+.docker/docker-compose.yml
+.docker/certs/*.crt
+.docker/certs/*.key
+*.vhost.conf
+!wordpress.sample.vhost.conf
+database/*
+*.sql
+web/sonar-project.properties
+
+# Work
+*.log
+sitemap.xml
+sitemap.xml.gz
+.htpassword
+.htpasswd
+.sass-cache/
+*.psd
+!sprite.psd
+*.tif
+*.tiff
+.svn
+*.svn-base
+~*
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+.scannerwork
+
+# Wordpress
+web/wp-content/cache/
+web/wp-content/advanced-cache.php
+web/wp-content/backup-db/
+web/wp-content/backups/
+web/wp-content/blogs.dir/
+web/wp-content/upgrade/
+web/wp-content/wp-cache-config.php
+web/wp-content/uploads/
+web/wp-content/languages/themes/*-backup-*
+
+# Front
+!web/wp-content/themes/default

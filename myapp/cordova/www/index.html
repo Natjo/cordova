@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Myapp</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://api.openweathermap.org/ data: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover, user-scalable=no">
+    <meta name="color-scheme" content="light dark">
+
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+
+<body>
+    <nav id="nav">
+    <button class="btn-close">Close</button>
+    <ul>
+        <li><a href="/realisations">Réalisations</a></li>
+        <li><a href="/actualites">Actualités</a></li>
+        <li><a href="/expertises">Expertises</a></li>
+    </ul>
+</nav>
+
+    <div class="main-wrapper">
+        <header id="header" role="banner" class="container" data-module="headernav">
+    <a href="/homepage" class="logo">
+        <img src="assets/img/birthdale.svg" width="30">
+        <img src="assets/img/logo.svg" width='100'>
+    </a>
+    <button class="btn-nav">Menu</button>
+</header>
+
+
+        <main id="homepage">
+    <header class="hero-homepage">
+    <div class="container">
+        <h1>We<br>design<br>brand<br>odysée</h1>
+    </div>
+
+    <hr>
+
+    <div class="rte container">
+        Agence leader du branding et design, depuis Paris et Singapour, <b>Lonsdale accompagne toutes les marques</b> – entreprises & institutions, produits & services, lieux & enseignes – dans la définition de leur singularité, pour construire avec elles des expériences omnicanales cohérentes et performantes.
+    </div>
+</header>
+
+    <section class="strate-realisation" data-module="strate-realisation">
+    <div class="container">
+        <header class="block-header">
+    <h2 class="tl2">Nos réalisations</h2>
+</header>
+
+        <button id="play">
+           Applause
+        </button>
+
+        <div>
+            <div class="samplerPads">
+                <div class="padGrid">
+                  <button class="padGrid-pad" type="button"></button>
+                  <button class="padGrid-pad" type="button"></button>
+                  <button class="padGrid-pad" type="button"></button>
+                  <button class="padGrid-pad" type="button"></button>
+                  <button class="padGrid-pad" type="button"></button>
+                  <button class="padGrid-pad" type="button"></button>
+                  <button class="padGrid-pad" type="button"></button>
+                  <button class="padGrid-pad" type="button"></button>
+                  <button class="padGrid-pad" type="button"></button>
+                </div>
+              </div>
+              <aside>
+                      <form class="controlset" id="master_controls">
+                          <label for="master">Master gain:</label>
+                          <input type="range" id="master" min="0" max="1" value="0.7" step="0.1">
+                      </form>
+              </aside>
+        </div>
+        <template class="page-realisation"><div class="page-realisation">
+    <h1 class="title tl2">${args.title}</h1>
+    <time class="date">${args.date}</time>
+    <div class="chapo">${args.chapo}</div>
+    <img class="image" src="${args.image}">
+    <div class="text rte">${args.text}</div>
+</div></template>
+
+        <template class="card-realisation"><div class="card-realisation">
+    <h3 class="tl3">${args.title}</h3>
+    <time>${args.date}</time>
+    <img src="${args.image}">
+</div></template>
+    
+        <div class="strate-content">
+            <ul></ul>
+        </div>
+    </div>
+</section>
+
+    <section class="strate-newsletter">
+    <div class="container">
+        <img class="visu" src="assets/img/push.svg">
+
+        <div class="tag">Newsletter</div>
+
+        <h2>La trendingRoom du Planning</h2>
+
+        <div class="rte">
+            <p>
+                <b>Découvrez toutes les tendances à avoir à l’œil</b> pour nourrir les marques et défricher de nouvelles opportunités d’innovation, d’activation, d’expériences et d’expérimentations. Repérées par l’équipe du planning stratégique de l’agence, elles sont toutes à un seul endroit, et c’est dans la TrendRoom du Planning, un format newsletter bilingue et gratuit sur LinkedIn.
+            </p>
+        </div>
+
+        <a href="">S'inscrire</a>
+    </div>
+</section>
+</main>
+
+        <main id="actualites">
+    <div class="container">
+
+        <header class="hero-page">
+    <div class="container">
+        <h1>Compte</h1>
+    </div>
+</header>
+   
+        <form action="">
+            <fieldset>
+                <legend>Personnelles</legend>
+                <div class="field">
+                    <label for="">Nom</label>
+                    <input type="text">
+                </div>
+                <div class="field">
+                    <label for="">Prénom</label>
+                    <input type="text">
+                </div>
+            </fieldset>
+            <input type="submit" value="Envoyer">
+        </form>
+    </div>
+</main>
+
+        <main id="realisations">
+    <div class="container">
+
+        <header class="hero-page">
+    <div class="container">
+        <h1>Nos Dashboard</h1>
+    </div>
+</header>
+
+        <section class="strate-test" data-module="strate-dashboard">
+    <h2>Météo</h2>
+    <img class="cloud" src="" alt="">
+    <div>
+        temperature: <span class="temp"></span>
+    </div>
+</section>
+        
+    </div>
+</main>
+
+        <main id="expertises">
+    <header class="hero-page">
+    <div class="container">
+        <h1>Nos actualités</h1>
+    </div>
+</header>
+
+    <div class="container">
+        <section class="strate-news" data-module="strate-news">
+    <ul>
+
+    </ul>
+</section>
+    </div>
+</main>
+
+
+        <footer id="footer" role="contentinfo">
+    <div class="container">
+
+
+        <div class="header">
+            <h2>Get in touch</h2>
+            <a href="mailto:hello@lonsdale.fr">hello@lonsdale.fr</a>
+        </div>
+
+
+        <div>
+            <h3>Lonsdale - Paris Office</h3>
+            <div class="rte">
+                <p>
+                    8 rue Lavoisier<br>
+                    75008 Paris – France<br>
+                    +33(0)1 43 12 67 00
+                </p>
+            </div>
+        </div>
+
+        <div>
+            <h3>Lonsdale - Singapore Office</h3>
+            <div class="rte">
+                <p>
+                    91 Bencoolen Street<br>
+                    #04-05 Sunshine Plaza<br>
+                    Singapore 189652<br>
+                    (+65) 6557 0684
+                </p>
+            </div>
+        </div>
+
+        <div>
+            <h3>Sister agency - CBX</h3>
+            <div class="rte">
+                <p>
+                    Minneapolis, New York<br>
+                    <a href="https://cbx.com">cbx.com</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="container">
+        <img class="logo" src="assets/img/logo.svg" width='100'>
+    </div>
+</footer>
+    </div>
+
+    <div class="panel">
+        <button class="btn-back">← Retour</button>
+
+        <div class="panel-content">
+        </div>
+    </div>
+
+    <div id="splashscreen"></div>
+
+    <script src="cordova.js"></script>
+    <script src="assets/index.js"></script>
+</body>
+
+</html>

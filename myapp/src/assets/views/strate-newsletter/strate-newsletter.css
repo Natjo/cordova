@@ -1,0 +1,26 @@
+.strate-newsletter {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    background: var(--color-5);
+    color: #000;
+
+    .visu{
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+    h2 {
+        margin-bottom: 10px;
+        font-weight: 900;
+        font-style: italic;
+        font-size: 3.5rem;
+        line-height: 1;
+    }
+    .tag{
+        font-weight: 900;
+        font-size: 2rem;
+        font-style: italic;
+    }
+    .b{
+        font-weight: 900;
+    }
+}

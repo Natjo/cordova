@@ -1,0 +1,14 @@
+.strate-realisation {
+    margin-bottom: 3rem;
+
+    ul{
+        display:grid;
+        grid-gap: 1rem;
+    }
+    img{
+        width: 100%;
+    }
+    .header {
+        margin-bottom: 3rem;
+    }
+}

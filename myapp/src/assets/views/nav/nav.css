@@ -1,0 +1,30 @@
+#nav {
+    position: fixed;
+    height: calc(100vh - 6rem);
+    width: 100%;
+    background-color: var(--color-3);
+    right: 100%;
+    transform: translateX(0);
+    transition: transform .4s ease;
+    z-index: 100;
+    height: 100dvh;
+    font-size: 2.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 2;
+    padding-bottom: 6rem;
+    box-sizing: border-box;
+
+
+    .btn-close{
+        position: absolute;
+        right: 5px;
+        top: 5px;
+    }
+    &.active {
+        transform: translateX(100%);
+        transition: transform .4s ease;
+    }
+}

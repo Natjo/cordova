@@ -1,0 +1,20 @@
+.strate-news {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    img {
+        width: 100%;
+    }
+
+    ul {
+        display: grid;
+        grid-gap: var(--gap);
+        grid-template-columns: 1fr 1fr;
+    }
+
+
+    .card-news {
+        img {
+            margin-top: 10px;
+        }
+    }
+}

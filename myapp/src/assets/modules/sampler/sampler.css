@@ -1,0 +1,40 @@
+
+.samplerPads {
+	height: 100vw;
+	margin: 0 auto;
+	width: 100%;
+}
+
+.padGrid {
+	align-content: space-between;
+	display: flex;
+	flex-flow: wrap;
+	height: 100%;
+	justify-content: space-between;
+	width: 100%;
+}
+
+@keyframes click{
+	0%{
+		background: rgb(72, 75, 79);
+	}
+
+	15%{
+		background: rgb(70, 103, 147);
+	}
+	100%{
+		background: rgb(72, 75, 79);
+	}
+}
+
+.padGrid-pad {
+	background: rgb(72, 75, 79);
+	border: none;
+	height: 33.24%;
+	width: 33.24%;
+
+	&.click{
+		animation: click .32s ease;
+	}
+}
+

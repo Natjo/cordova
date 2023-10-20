@@ -1,0 +1,84 @@
+@font-face {
+    font-family: "AribauGrotesk";
+    src: url(./../fonts/AribauGroteskUltraLight.woff2) format('woff2');
+    font-weight: 100;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "AribauGrotesk";
+    src: url(./../fonts/AribauGroteskUltraLightItalic.woff2) format('woff2');
+    font-weight: 100;
+    font-style: italic;
+  }
+  @font-face {
+    font-family: "AribauGrotesk";
+    src: url(./../fonts/AribauGroteskExtraLight.woff2) format('woff2');
+    font-weight: 200;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "AribauGrotesk";
+    src: url(./../fonts/AribauGroteskExtraLightItalic.woff2) format('woff2');
+    font-weight: 200;
+    font-style: italic;
+  }
+  @font-face {
+    font-family: "AribauGrotesk";
+    src: url(./../fonts/AribauGroteskLight.woff2) format('woff2');
+    font-weight: 300;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "AribauGrotesk";
+    src: url(./../fonts/AribauGroteskLightItalic.woff2) format('woff2');
+    font-weight: 300;
+    font-style: italic;
+  }
+  @font-face {
+    font-family: "AribauGrotesk";
+    src: url(./../fonts/AribauGroteskRegular.woff2) format('woff2');
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "AribauGrotesk";
+    src: url(./../fonts/AribauGroteskRegularItalic.woff2) format('woff2');
+    font-weight: 400;
+    font-style: italic;
+  }
+  @font-face {
+    font-family: "AribauGrotesk";
+    src: url(./../fonts/AribauGroteskMedium.woff2) format('woff2');
+    font-weight: 500;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "AribauGrotesk";
+    src: url(./../fonts/AribauGroteskMediumItalic.woff2) format('woff2');
+    font-weight: 500;
+    font-style: italic;
+  }
+  @font-face {
+    font-family: "AribauGrotesk";
+    src: url(./../fonts/AribauGroteskBold.woff2) format('woff2');
+    font-weight: 700;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "AribauGrotesk";
+    src: url(./../fonts/AribauGroteskBoldItalic.woff2) format('woff2');
+    font-weight: 700;
+    font-style: italic;
+  }
+  @font-face {
+    font-family: "AribauGrotesk";
+    src: url(./../fonts/AribauGroteskBlack.woff2) format('woff2');
+    font-weight: 900;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "AribauGrotesk";
+    src: url(./../fonts/AribauGroteskBlackItalic.woff2) format('woff2');
+    font-weight: 900;
+    font-style: italic;
+  }

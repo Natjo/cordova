@@ -1,0 +1,489 @@
+
+.samplerPads {
+	height: 100vw;
+	margin: 0 auto;
+	width: 100%;
+}
+
+.padGrid {
+	align-content: space-between;
+	display: flex;
+	flex-flow: wrap;
+	height: 100%;
+	justify-content: space-between;
+	width: 100%;
+}
+
+@keyframes click{
+	0%{
+		background: rgb(72, 75, 79);
+	}
+
+	15%{
+		background: rgb(70, 103, 147);
+	}
+	100%{
+		background: rgb(72, 75, 79);
+	}
+}
+
+.padGrid-pad {
+	background: rgb(72, 75, 79);
+	border: none;
+	height: 33.24%;
+	width: 33.24%;
+}
+
+.padGrid-pad.click{
+		animation: click .32s ease;
+	}
+@font-face {
+    font-family: "AribauGrotesk";
+    src: url(./../fonts/AribauGroteskUltraLight.woff2) format('woff2');
+    font-weight: 100;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "AribauGrotesk";
+    src: url(./../fonts/AribauGroteskUltraLightItalic.woff2) format('woff2');
+    font-weight: 100;
+    font-style: italic;
+  }
+  @font-face {
+    font-family: "AribauGrotesk";
+    src: url(./../fonts/AribauGroteskExtraLight.woff2) format('woff2');
+    font-weight: 200;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "AribauGrotesk";
+    src: url(./../fonts/AribauGroteskExtraLightItalic.woff2) format('woff2');
+    font-weight: 200;
+    font-style: italic;
+  }
+  @font-face {
+    font-family: "AribauGrotesk";
+    src: url(./../fonts/AribauGroteskLight.woff2) format('woff2');
+    font-weight: 300;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "AribauGrotesk";
+    src: url(./../fonts/AribauGroteskLightItalic.woff2) format('woff2');
+    font-weight: 300;
+    font-style: italic;
+  }
+  @font-face {
+    font-family: "AribauGrotesk";
+    src: url(./../fonts/AribauGroteskRegular.woff2) format('woff2');
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "AribauGrotesk";
+    src: url(./../fonts/AribauGroteskRegularItalic.woff2) format('woff2');
+    font-weight: 400;
+    font-style: italic;
+  }
+  @font-face {
+    font-family: "AribauGrotesk";
+    src: url(./../fonts/AribauGroteskMedium.woff2) format('woff2');
+    font-weight: 500;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "AribauGrotesk";
+    src: url(./../fonts/AribauGroteskMediumItalic.woff2) format('woff2');
+    font-weight: 500;
+    font-style: italic;
+  }
+  @font-face {
+    font-family: "AribauGrotesk";
+    src: url(./../fonts/AribauGroteskBold.woff2) format('woff2');
+    font-weight: 700;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "AribauGrotesk";
+    src: url(./../fonts/AribauGroteskBoldItalic.woff2) format('woff2');
+    font-weight: 700;
+    font-style: italic;
+  }
+  @font-face {
+    font-family: "AribauGrotesk";
+    src: url(./../fonts/AribauGroteskBlack.woff2) format('woff2');
+    font-weight: 900;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "AribauGrotesk";
+    src: url(./../fonts/AribauGroteskBlackItalic.woff2) format('woff2');
+    font-weight: 900;
+    font-style: italic;
+  }* {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+    -webkit-touch-callout: none;
+    -webkit-text-size-adjust: none;
+    -webkit-user-select: none;
+    /* Padding to avoid the "unsafe" areas behind notches in the screen */
+    padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
+    height: 100vh;
+    margin: 0;
+}
+
+html {
+    font-size: 62.5%;
+    background-color: #000;
+    ;
+}
+
+body {
+    font-family: var(--font-1);
+    font-size: var(--font-size);
+    color: var(--color-text);
+    line-height: 1.4;
+    background-color: #fff;
+}
+
+#splashscreen {
+    position: fixed;
+    inset: 0 0 0 0;
+    background: #000;
+    transition: opacity .4s ease;
+    pointer-events: none;
+    ;
+    display: none;
+
+}
+
+#splashscreen.hide {
+        opacity: 0;
+    }
+
+main {
+    display: none;
+}
+
+.main-wrapper {
+    background-color: #000;
+    width: 100%;
+    transition: transform .5s ease, opacity .25s ease;
+    transform: translateX(0);
+}
+
+.main-wrapper.hide {
+        transform: translateX(-20%);
+    }
+
+.main-wrapper.hide-right {
+        transform: translateX(20%);
+    }
+
+.main-wrapper.show {
+        transform: translateX(0);
+    }
+
+.main-wrapper.fadeout {
+        opacity: 0;
+    }
+
+.main-wrapper.fadein {
+        opacity: 1;
+    }
+
+.container {
+    padding-left: var(--ctr-offset);
+    padding-right: var(--ctr-offset);
+    box-sizing: border-box;
+}
+
+
+.panel {
+    padding-top: var(--header-height);
+    position: fixed;
+    top: 0;
+    left: 100%;
+    width: 100%;
+    height: 100vh;
+    background-color: #fff;
+    transform: translateX(0);
+    transition: all .4s ease;
+    color: #000;
+    padding: 20px;
+    padding-top: calc(var(--header-height) + 20px);
+    box-sizing: border-box;
+}
+
+
+.panel.display {
+        transform: translateX(-100%);
+    }h1, h2, h3, h4{
+	margin: 0;
+}
+ol, ul{
+	margin: 0;
+    padding-left: 0;
+    list-style: none;
+}
+p{
+    margin: 0;
+}
+a{
+    color: inherit;
+    text-decoration: none;
+}
+img{
+    display: block;
+    margin: 0;
+}
+figure{
+    margin: 0;
+}
+picture{
+    display: block;
+}
+canvas{
+    display: block;
+}
+iframe{
+    display: block;
+	border: 0;
+}
+fieldset{
+    margin: 0;
+    padding: 0;
+	border: 0;
+}
+table{
+	border-collapse: collapse;
+    border-spacing: 0;
+}
+tbody, thead, tr, th, td{
+	padding: 0;
+}
+svg{
+	display: block;
+}
+video{
+    display: block;
+}
+blockquote{
+	margin: 0;
+}
+dl, dd{
+    margin: 0;
+}
+button{
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background: none;
+    cursor: pointer;
+	padding: 0;
+	border: 0;
+}.tl2{
+    font-size: 2.4rem;
+}
+.tl3{
+    font-size: 2rem;
+}
+.tl4{
+    font-size: 1.8rem;
+}:root {
+    --font-1: 'AribauGrotesk', sans-serif;
+
+    --ctr-width: 1400px;
+
+    --color-text: #fff;
+
+    --gray-light: #ECECEC;
+    --gray: #ECECEC;
+    --gray-dark: #ECECEC;
+
+    --color-1: #596f62;
+    --color-2: #9e9456;
+    --color-3: #00768C;
+    --color-5: #bc8da6;
+    --color-7: #656565;
+    --color-8: #C9C9C9;
+
+    --color-error: red;
+    --color-valid: green;
+    --color-focus: blue;
+}
+
+@media(max-width: 991px) {
+    :root {
+        --ctr-offset: 20px;
+        --header-height: 70px;
+        --gap: 20px;
+        --margin-sm: 10px;
+        --margin: 10px;
+        --margin-lg: 20px;
+        --font-size-sm: 1.2rem;
+        --font-size: 1.4rem;
+        --font-size-md: 1.6rem;
+        --font-size-lg: 1.8rem;
+        --font-size-xlg: 2rem;
+    }
+}
+
+@media (min-width: 992px) {
+    :root {
+        --ctr-offset: 60px;
+        --header-height: 90px;
+        --gap: 40px;
+
+        --font-size-sm: 1.2rem;
+        --font-size: 1.6rem;
+        --font-size-md: 1.8rem;
+        --font-size-lg: 2.2rem;
+        --font-size-xlg: 2.8rem;
+
+        --margin-sm: 20px;
+        --margin: 40px;
+        --margin-lg: 60px;
+    }
+}.block-header {
+    margin-bottom: 2rem;
+}.card-news {
+   
+}.card-realisation {
+   background-color: pink;
+}#footer {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    background-color: #fff;
+    color: #000;
+}#footer .container {
+        display: flex;
+        gap: 3rem;
+        flex-direction: column;
+    }#footer h3 {
+        font-weight: 800;
+    }#footer a {
+        color: #000;
+    }#footer .header a {
+            font-size: 4rem;
+            font-style: italic;
+            font-weight: 900;
+        }#footer hr {
+        margin: 3rem 0;
+        border: none;
+        border-bottom: 1px solid var(--color-8);
+    }#footer .logo {
+        filter: invert(1);
+    }#header {
+    background-color: #000;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--header-height);
+    color: #fff;
+
+}#header .logo {
+        display: flex;
+        gap: 1rem;
+    }#header .btn-nav {
+        background-color: var(--color-3);
+        border-radius: 2rem;
+        height: 4rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }.hero-homepage {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}.hero-homepage h1 {
+        font-style: italic;
+        font-size: 7rem;
+        line-height: 6.5rem;
+        font-weight: 900;
+        text-transform: uppercase;
+    }.hero-homepage hr {
+        margin: 3rem 0;
+        border: none;
+        border-bottom: 1px solid var(--color-7);
+    }.hero-homepage .rte{
+        font-size: 2.4rem;
+        line-height: 1.4;
+        font-weight: 300;
+       
+    }.hero-page {
+    margin-bottom: 40px;
+    background-color: aliceblue;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}.hero-page h2 {
+        margin-bottom: 10px;
+    }#nav {
+    position: fixed;
+    height: calc(100vh - 6rem);
+    width: 100%;
+    background-color: var(--color-3);
+    right: 100%;
+    transform: translateX(0);
+    transition: transform .4s ease;
+    z-index: 100;
+    height: 100dvh;
+    font-size: 2.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 2;
+    padding-bottom: 6rem;
+    box-sizing: border-box;
+}#nav .btn-close{
+        position: absolute;
+        right: 5px;
+        top: 5px;
+    }#nav.active {
+        transform: translateX(100%);
+        transition: transform .4s ease;
+    }.card-news {
+   
+}.strate-news {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}.strate-news img {
+        width: 100%;
+    }.strate-news ul {
+        display: grid;
+        grid-gap: var(--gap);
+        grid-template-columns: 1fr 1fr;
+    }.strate-news .card-news img {
+            margin-top: 10px;
+        }.strate-newsletter {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    background: var(--color-5);
+    color: #000;
+}.strate-newsletter .visu{
+        width: 100%;
+        margin-bottom: 2rem;
+    }.strate-newsletter h2 {
+        margin-bottom: 10px;
+        font-weight: 900;
+        font-style: italic;
+        font-size: 3.5rem;
+        line-height: 1;
+    }.strate-newsletter .tag{
+        font-weight: 900;
+        font-size: 2rem;
+        font-style: italic;
+    }.strate-newsletter .b{
+        font-weight: 900;
+    }.strate-realisation {
+    margin-bottom: 3rem;
+}.strate-realisation ul{
+        display:grid;
+        grid-gap: 1rem;
+    }.strate-realisation img{
+        width: 100%;
+    }.strate-realisation .header {
+        margin-bottom: 3rem;
+    }
