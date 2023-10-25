@@ -27,6 +27,14 @@
         <string>need photo library access to save pictures there</string>
     </edit-config>
 
+    <edit-config target="NSMicrophoneUsageDescription" file="*-Info.plist" mode="merge">
+        <string>Micro</string>
+    </edit-config>
+        <edit-config target="NSSpeechRecognitionUsageDescription" file="*-Info.plist" mode="merge">
+        <string>Micro</string>
+    </edit-config>
+     
+
 
     <preference name="BackgroundColor" value="#000"/>
     <preference name="SplashScreenBackgroundColor " value="#000"/>
