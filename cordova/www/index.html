@@ -4,7 +4,12 @@
 <head>
     <meta charset="utf-8">
     <title>Myapp</title>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://api.openweathermap.org/ data: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+    <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self' https://livrable.lonsdale.fr/ https://api.openweathermap.org/ data: https://ssl.gstatic.com 'unsafe-eval'; 
+    style-src 'self' 'unsafe-inline'; 
+    media-src *; 
+    video-src 'self' https://livrable.lonsdale.fr/ data: content:;
+    img-src 'self' data: content:;">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover, user-scalable=no">
@@ -15,7 +20,9 @@
 
 <body>
     <nav id="nav">
-    <button class="btn-close">Close</button>
+    <button class="btn-close">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21l-9-9m0 0L3 3m9 9l9-9m-9 9l-9 9"/></svg>
+    </button>
     <ul>
         <li><a href="/realisations">Réalisations</a></li>
         <li><a href="/actualites">Actualités</a></li>
@@ -32,7 +39,6 @@
     </a>
     <button class="btn-nav">Menu</button>
 </header>
-
 
         <main id="homepage">
     <header class="hero-homepage" data-module="hero-homepage">
@@ -59,15 +65,16 @@
 
         <template id="tpl-content-realisation"><div><div class="content-realisation">
     <h1 class="title tl2">${args.title}</h1>
-    <time class="date">${args.date}</time>
-    <div class="chapo">${args.chapo}</div>
+    <div class="label">${args.label}</div>
     <img class="image" src="${args.image}">
-    <div class="text rte">${args.text}</div>
+    <video controls mutedautoplay poster="${args.poster}">
+        <source src="${args.video}" type="video/mp4" />
+    </video>
 </div></div></template>
 
         <template id="tpl-card-realisation"><div><div class="card-realisation">
     <h3 class="tl3">${args.title}</h3>
-    <time>${args.date}</time>
+    <div class="label">${args.label}</div>
     <img src="${args.image}">
 </div></div></template>
     
@@ -103,24 +110,30 @@
     </div>
 </header>
 
+    <template id="tpl-content-news"><div><div class="content-news">
+    <h1 class="title tl2">${args.title}</h1>
+    <time class="date">${args.date}</time>
+    <img class="image" src="${args.image}">
+    <div class="text rte">${args.text}</div>
+</div></div></template>
+
+    <template id="tpl-card-news"><div><div class="card-news">
+    <h3 class="tl3">${args.title}</h3>
+    <time class="date">${args.date}</time>
+    <img src="${args.image}">
+</div></div></template>
+
     <div class="container">
         <section class="strate-news" data-module="strate-news">
-    <ul>
-
-    </ul>
+    <div class="strate-content">
+        <ul></ul>
+    </div>
 </section>
     </div>
 </main>
 
         <main id="realisations">
-    <header class="hero-page">
-    <div class="container">
-        <h1>Nos Réalisations</h1>
-    </div>
-</header>
-
-    <div class="container">
-        <section class="strate-realisation" data-module="strate-realisation">
+    <section class="strate-realisation" data-module="strate-realisation">
     <div class="container">
         <header class="block-header">
     <h2 class="tl2">Nos réalisations</h2>
@@ -128,15 +141,16 @@
 
         <template id="tpl-content-realisation"><div><div class="content-realisation">
     <h1 class="title tl2">${args.title}</h1>
-    <time class="date">${args.date}</time>
-    <div class="chapo">${args.chapo}</div>
+    <div class="label">${args.label}</div>
     <img class="image" src="${args.image}">
-    <div class="text rte">${args.text}</div>
+    <video controls mutedautoplay poster="${args.poster}">
+        <source src="${args.video}" type="video/mp4" />
+    </video>
 </div></div></template>
 
         <template id="tpl-card-realisation"><div><div class="card-realisation">
     <h3 class="tl3">${args.title}</h3>
-    <time>${args.date}</time>
+    <div class="label">${args.label}</div>
     <img src="${args.image}">
 </div></div></template>
     
@@ -145,9 +159,6 @@
         </div>
     </div>
 </section>
-
-
-    </div>
 </main>
 
         <main id="expertises">
@@ -170,7 +181,7 @@
     </div>
 </header>
 
-    <section class="strate-sampler" data-module="strate-sampler">
+    <section class="strate-sampler" id="sampler" data-module="strate-sampler">
     <div class="container">
         <header class="block-header">
     <h2 class="tl2">Sampler</h2>
@@ -199,8 +210,57 @@
     </aside>
 </section>
 
-</main>
+    <section class="strate-camera" id="camera" data-module="strate-camera">
+    <div class="container">
+        <header class="block-header">
+    <h2 class="tl2">Plugin camera</h2>
+</header>
 
+        <div class="xmpl">
+            <div class="button" id="btn-camera">
+                Camera Picture</div>
+            <img />
+        </div>
+
+        <div class="xmpl">
+            <div class="button" id="btn-photolib">
+                Photo Library Picture</div>
+            <img />
+        </div>
+
+
+        <div class="xmpl">
+            <div class="button" id="btn-videolib"  ontouchend="btnTouchEnd(this )">
+                Photo Library Video</div>
+            <video controls preload="metadata" />
+        </div>
+
+
+    </div>
+</section>
+
+    <nav id="nav-anchor" data-module="nav-anchor">
+    <div class="container">
+        <ul>
+            <li>
+                <button value="sampler">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                        <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 16h6l4-11l6 22l4-11h6" />
+                    </svg>
+                </button>
+            </li>
+            <li>
+                <button value="camera">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 100 100">
+                        <path fill="#000" d="M0 21.127v57.746c.001 1.82 1.886 3.03 3.541 2.272c0 0 3.455-1.604 11.104-3.297c7.649-1.693 19.34-3.405 35.355-3.405c16.015 0 27.706 1.712 35.355 3.405c7.65 1.693 11.104 3.297 11.104 3.297c1.655.757 3.54-.451 3.541-2.272V21.127c-.001-1.79-1.827-2.998-3.475-2.3c0 0-15.746 6.73-46.525 6.73c-30.779 0-46.525-6.73-46.525-6.73c-1.688-.603-3.434.953-3.475 2.3Zm5 3.504c6.39 2.027 21.643 5.926 45 5.926s38.61-3.899 45-5.926v44.426c-7.977.228-16.18-.56-24.992-4.09L51.795 44.604L36.416 57.508l-7.424-4.95L14.4 68.042c-3.017 1.35-5.923 3.034-9.4 3.004Zm70.04 12.846a6.718 6.718 0 0 0-6.628 6.716a6.718 6.718 0 1 0 6.627-6.716z" color="currentColor" />
+                    </svg>
+                </button>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+</main>
 
         <footer id="footer" role="contentinfo">
     <div class="container">

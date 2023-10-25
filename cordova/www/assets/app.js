@@ -286,6 +286,98 @@
   window.hero_homepage = hero_homepage;
 })();
 (function () {
+  function nav_anchor(el) {
+    const btns = el.querySelectorAll('button');
+    btns.forEach(btn => {
+      btn.onclick = () => {
+        document.querySelector(`#${btn.value}`).scrollIntoView({
+          behavior: "smooth"
+        });
+      };
+    });
+    this.start = () => {};
+  }
+  window.nav_anchor = nav_anchor;
+})();
+(function () {
+  function strate_camera(el) {
+    const btn_camera = document.getElementById('btn-camera');
+    const btn_photolib = document.getElementById('btn-photolib');
+    const btn_videolib = document.getElementById('btn-videolib');
+    btn_camera.ontouchstart = () => btn_camera.classList.add("touchStart");
+    btn_photolib.ontouchstart = () => btn_photolib.classList.add("touchStart");
+    btn_videolib.ontouchstart = () => btn_videolib.classList.add("touchStart");
+    btn_camera.ontouchend = () => btn_camera.classList.remove("touchStart");
+    btn_photolib.ontouchend = () => btn_photolib.classList.remove("touchStart");
+    btn_videolib.ontouchend = () => btn_videolib.classList.remove("touchStart");
+    btn_camera.onclick = () => exampleOneClicked(btn_camera.nextElementSibling);
+    btn_photolib.onclick = () => exampleTwoClicked(btn_photolib.nextElementSibling);
+    btn_videolib.onclick = () => exampleFourClicked(btn_videolib.nextElementSibling);
+    function exampleOneClicked(img) {
+      let pictureOptions = {
+        cameraDirection: Camera.Direction.FRONT,
+        saveToPhotoAlbum: false,
+        destinationType: Camera.DestinationType.DATA_URL,
+        quality: 60
+      };
+      function fctSuccess(image) {
+        img.src = `data:image/jpeg;base64,${image}`;
+      }
+      function fctFailure(errorMsg) {
+        console.log(errorMsg);
+      }
+      navigator.camera.getPicture(fctSuccess, fctFailure, pictureOptions);
+    }
+    function exampleTwoClicked(img) {
+      let pictureOptions = {
+        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+        allowEdit: true
+      };
+      function fctSuccess(image) {
+        img.src = image;
+      }
+      function fctFailure(errorMsg) {
+        console.log(errorMsg);
+      }
+      navigator.camera.getPicture(fctSuccess, fctFailure, pictureOptions);
+    }
+    function exampleThreeClicked(img) {
+      let pictureOptions = {
+        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+        popoverOptions: new CameraPopoverOptions(0, 200, 300, 400, Camera.PopoverArrowDirection.ARROW_UP, 0, 0)
+      };
+      function fctSuccess(image) {
+        img.src = image;
+      }
+      function fctFailure(errorMsg) {
+        console.log(errorMsg);
+      }
+      navigator.camera.getPicture(fctSuccess, fctFailure, pictureOptions);
+      function updatePopOverLocation() {
+        let cameraPopoverHandle = new CameraPopoverHandle();
+        let cameraPopoverOptions = new CameraPopoverOptions(100, 300, 300, 600, Camera.PopoverArrowDirection.ARROW_DOWN, 0, 0);
+        cameraPopoverHandle.setPosition(cameraPopoverOptions);
+      }
+      window.setTimeout(updatePopOverLocation, 4000);
+    }
+    function exampleFourClicked(vdo) {
+      let pictureOptions = {
+        mediaType: Camera.MediaType.VIDEO,
+        sourceType: Camera.PictureSourceType.PHOTOLIBRARY
+      };
+      function fctSuccess(video) {
+        vdo.src = video;
+      }
+      function fctFailure(errorMsg) {
+        console.log(errorMsg);
+      }
+      navigator.camera.getPicture(fctSuccess, fctFailure, pictureOptions);
+    }
+    this.start = () => {};
+  }
+  window.strate_camera = strate_camera;
+})();
+(function () {
   function strate_dashboard(el) {
     this.start = () => {};
     this.onleave = () => {};
@@ -293,67 +385,12 @@
   window.strate_dashboard = strate_dashboard;
 })();
 (function () {
-  function strate_news(el) {
-    const result = el.querySelector('ul');
-    const main_wrapper = document.querySelector(".main-wrapper");
-    const panel = document.querySelector('.panel');
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', "https://livrable.lonsdale.fr/cordova/test.json");
-    xhr.send();
-    xhr.onload = () => {
-      const data = JSON.parse(xhr.response);
-      let html = "";
-      for (let i = 0; i < data.news.length; i++) {
-        const item = data.news[i];
-        html += `
-                <li data-index="${i}">
-                    <div class="card-news">
-                        <h3 class="tl3">${item.title}</h3> 
-                        <time>${item.date}<time>
-                        <img src="${item.image}">
-                    </div>
-                </li>`;
-      }
-      result.innerHTML = html;
-      result.querySelectorAll("li").forEach(element => {
-        element.onclick = () => {
-          const num = Number(element.dataset.index);
-          const item = data.news[num];
-          const html = `
-                        <h1 class="tl2">${item.title}</h1> 
-                        <time>${item.date}<time>
-                        <div class="chapo">${item.chapo}<div>
-                        <img src="${item.image}">
-                        <div class="rte">${item.image}</div> 
-                    </div>`;
-          panel.querySelector('.btn-back').onclick = () => {
-            panel.classList.remove("display");
-            main_wrapper.classList.add("show");
-            main_wrapper.addEventListener('transitionend', () => {
-              main_wrapper.classList.remove("show");
-              main_wrapper.classList.remove("hide");
-            }, {
-              once: true
-            });
-          };
-          panel.querySelector('.page-content').innerHTML = html;
-          panel.classList.add("display");
-          main_wrapper.classList.add("hide");
-        };
-      });
-      ;
-    };
-    this.start = () => {};
-  }
-  window.strate_news = strate_news;
-})();
-(function () {
   function getTemplate(selector, args) {
     const template = document.getElementById(selector);
     const clone = template.content.cloneNode(true);
     return eval("`" + clone.firstElementChild.innerHTML + "`");
   }
-  function strate_realisation(el) {
+  function strate_news(el) {
     const result = el.querySelector('ul');
     const main_wrapper = document.querySelector(".main-wrapper");
     const panel = document.querySelector('.panel');
@@ -367,10 +404,11 @@
         const item = data.news[i];
         const args = {
           title: item.title,
-          date: item.date,
+          data: item.date,
+          desc: item.desc,
           image: item.image
         };
-        result.insertAdjacentHTML('beforeend', `<li>${getTemplate("tpl-card-realisation", args)}</li>`);
+        result.insertAdjacentHTML('beforeend', `<li>${getTemplate("tpl-card-news", args)}</li>`);
       }
       result.querySelectorAll("li").forEach((element, num) => {
         element.onclick = () => {
@@ -388,9 +426,64 @@
           const args = {
             title: item.title,
             date: item.date,
-            chapo: item.chapo,
             image: item.image,
             text: item.text
+          };
+          panel_content.innerHTML = getTemplate("tpl-content-news", args);
+          panel.classList.add("display");
+          main_wrapper.classList.add("hide");
+        };
+      });
+      ;
+    };
+    this.start = () => {};
+  }
+  window.strate_news = strate_news;
+})();
+(function () {
+  function getTemplate(selector, args) {
+    const template = document.getElementById(selector);
+    const clone = template.content.cloneNode(true);
+    return eval("`" + clone.firstElementChild.innerHTML + "`");
+  }
+  function strate_realisation(el) {
+    const result = el.querySelector('.strate-content ul');
+    const main_wrapper = document.querySelector(".main-wrapper");
+    const panel = document.querySelector('.panel');
+    const panel_content = panel.querySelector('.panel-content');
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', "https://livrable.lonsdale.fr/cordova/test.json");
+    xhr.send();
+    xhr.onload = () => {
+      const data = JSON.parse(xhr.response);
+      for (let i = 0; i < data.realisations.length; i++) {
+        const item = data.realisations[i];
+        const args = {
+          title: item.title,
+          label: item.label,
+          image: item.image
+        };
+        result.insertAdjacentHTML('beforeend', `<li>${getTemplate("tpl-card-realisation", args)}</li>`);
+      }
+      result.querySelectorAll("li").forEach((element, num) => {
+        element.onclick = () => {
+          const item = data.realisations[num];
+          panel.querySelector('.btn-back').onclick = () => {
+            panel.classList.remove("display");
+            main_wrapper.classList.add("show");
+            main_wrapper.addEventListener('transitionend', () => {
+              main_wrapper.classList.remove("show");
+              main_wrapper.classList.remove("hide");
+            }, {
+              once: true
+            });
+          };
+          const args = {
+            title: item.title,
+            label: item.label,
+            video: item.video,
+            poster: item.poster,
+            image: item.image
           };
           panel_content.innerHTML = getTemplate("tpl-content-realisation", args);
           panel.classList.add("display");
@@ -466,6 +559,10 @@ links.forEach(link => {
           once: true
         });
       }
+    } else {
+      main_wrapper.classList.remove("show");
+      main_wrapper.classList.remove("hide");
+      main_wrapper.classList.remove("hide-right");
     }
   };
 });
