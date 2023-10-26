@@ -13,6 +13,8 @@
   "author": "Apache Cordova Team",
   "license": "Apache-2.0",
   "devDependencies": {
+    "@globules-io/cordova-plugin-ios-xhr": "^1.2.4",
+    "cordova-browser": "^7.0.0",
     "cordova-ios": "^7.0.1",
     "cordova-plugin-camera": "^7.0.0",
     "cordova-plugin-file": "^8.0.0",
@@ -20,12 +22,14 @@
   },
   "cordova": {
     "platforms": [
-      "ios"
+      "ios",
+      "browser"
     ],
     "plugins": {
       "cordova-plugin-statusbar": {},
       "cordova-plugin-camera": {},
-      "cordova-plugin-file": {}
+      "cordova-plugin-file": {},
+      "@globules-io/cordova-plugin-ios-xhr": {}
     }
   }
 }

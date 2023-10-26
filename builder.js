@@ -34,7 +34,7 @@ const core = {
         const slug0 = path.dirname(file).replace(__dirname + "/src/pages", "") + "/";
         slug = slug0.substring(1);
         fs.ensureDirSync(dist + slug);
-        fs.writeFileSync(dist + slug + name,eval("`" + fs.readFileSync(file, "utf8") + "`"));
+        fs.writeFileSync(dist + slug + name, eval("`" + fs.readFileSync(file, "utf8") + "`"));
     },
     dirPage(dir) {
         const recursive = (dir) => {
@@ -156,7 +156,7 @@ const core = {
                 fs.writeFileSync(dest, minify);
             });
     },
-    console( filename, evt) {
+    console(filename, evt) {
         let status;
         if (evt == "remove") status = `31mremoved`;
         if (evt == "update") status = `32mupdated`;
@@ -209,22 +209,15 @@ watch(["src/assets/", "src/pages/", "src/views/"], { recursive: true }, (evt, fi
     const isFile = file.indexOf(".") > 0 ? true : false;
     const filename = path.basename(file);
     const ext = path.extname(filename);
-    const folder = file.split("/")[1]; // module, view, styles, img, fonts ..
     const name = file.replace(`src/`, "");
 
-    if (/^src\/pages\//.test(file)) {
-        core.compilePage(__dirname + "/" + file);
-    } else {
-        if (evt == "update" || evt == "add") {
-            core.compileAssets(file, dist + name, ext);
-        }
-
+    if (ext === ".html") {
+        core.dirPage("src/pages/");
+    }
+    else {
+        if (evt == "update" || evt == "add") core.compileAssets(file, dist + name, ext);
         if (ext === ".css") core.compile_syles();
         if (ext === ".js") core.compile_js();
-
-        if (folder === "views" && ext === ".html") {
-            core.dirPage("src/pages/");
-        }
     }
 
     isFile && evt == "remove" ? fs.unlinkSync(dist + name) : core.rmDir(dist + name);

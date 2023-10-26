@@ -1,7 +1,6 @@
 
 
 (function () {
-
     function strate_camera(el) {
         const btn_camera = document.getElementById('btn-camera');
         const btn_photolib = document.getElementById('btn-photolib');
