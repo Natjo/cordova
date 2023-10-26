@@ -20,8 +20,8 @@
 
     .btn-close{
         position: absolute;
-        right: 5px;
-        top: 5px;
+        right: 20px;
+        top: 20px;
     }
     &.active {
         transform: translateX(100%);

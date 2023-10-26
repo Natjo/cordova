@@ -3,36 +3,43 @@
 (function () {
 
     function getTemplate(selector, args) {
-        const template = document.getElementById(selector);
+     
+        const template = document.getElementById(selector);   
+
         const clone = template.content.cloneNode(true);
+  
         return eval("`" + clone.firstElementChild.innerHTML + "`");
     }
 
     function strate_realisation(el) {
-        const result = el.querySelector('ul');
+  
+        const result = el.querySelector('.strate-content ul');
         const main_wrapper = document.querySelector(".main-wrapper");
         const panel = document.querySelector('.panel');
         const panel_content = panel.querySelector('.panel-content');
 
+
         const xhr = new XMLHttpRequest();
         xhr.open('GET', "https://livrable.lonsdale.fr/cordova/test.json");
         xhr.send();
+        
         xhr.onload = () => {
             const data = JSON.parse(xhr.response);
-
-            for (let i = 0; i < data.news.length; i++) {
-                const item = data.news[i];
+          
+            for (let i = 0; i < data.realisations.length; i++) {
+                const item = data.realisations[i];
                 const args = {
                     title: item.title,
-                    date: item.date,
+                    label: item.label,
                     image: item.image,
-                }
+                };
+         
                 result.insertAdjacentHTML('beforeend', `<li>${getTemplate("tpl-card-realisation", args)}</li>`);
             }
-
+     
             result.querySelectorAll("li").forEach((element, num) => {
                 element.onclick = () => {
-                    const item = data.news[num];
+                    const item = data.realisations[num];
 
                     panel.querySelector('.btn-back').onclick = () => {
                         panel.classList.remove("display");
@@ -46,10 +53,10 @@
                     // template page to panel
                     const args = {
                         title: item.title,
-                        date: item.date,
-                        chapo: item.chapo,
+                        label: item.label,
+                        video: item.video,
+                        poster: item.poster,
                         image: item.image,
-                        text: item.text
                     }
                     panel_content.innerHTML = getTemplate("tpl-content-realisation", args);
 
@@ -60,10 +67,8 @@
         };
 
         this.start = () => {
-
         }
     }
 
     window.strate_realisation = strate_realisation;
-
 })();

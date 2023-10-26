@@ -504,7 +504,8 @@
   window.strate_sampler = strate_sampler;
 })();
 (function () {
-  function strate_speech(el) {
+  let main;
+  function recognition(el) {
     var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     var recognition = new SpeechRecognition();
     var text = "";
@@ -514,9 +515,9 @@
       var current = event.resultIndex;
       var transcript = event.results[current][0].transcript;
       var mobileRepeatBug = current == 1 && transcript == event.results[0][0].transcript;
+      text = transcript.toLowerCase();
+      el.querySelector('.result').innerHTML = text;
       if (!mobileRepeatBug) {
-        text = transcript.toLowerCase();
-        el.querySelector('.result').innerHTML = text;
         const arr = ['julien', 'johan', 'aurélien', 'sophie', 'anthony', 'léo', 'philippe', 'brian', 'mathieu'];
         let result = null;
         for (let i = 0; i < arr.length; i++) {
@@ -546,6 +547,78 @@
         btn_speak.classList.add('active');
       }
     };
+  }
+  function synthesis(el) {
+    const synth = window.speechSynthesis;
+    const btn_play = el.querySelector("button");
+    const inputTxt = main.querySelector(".result");
+    const voiceSelect = el.querySelector(".select-voices");
+    const langSelect = el.querySelector(".select-lang");
+    let lang = "en-US";
+    let voices = [];
+    function populateVoiceList() {
+      voices = synth.getVoices().sort(function (a, b) {
+        const aname = a.name.toUpperCase();
+        const bname = b.name.toUpperCase();
+        if (aname < bname) {
+          return -1;
+        } else if (aname == bname) {
+          return 0;
+        } else {
+          return +1;
+        }
+      });
+      const selectedIndex = voiceSelect.selectedIndex < 0 ? 0 : voiceSelect.selectedIndex;
+      voiceSelect.innerHTML = "";
+      for (let i = 0; i < voices.length; i++) {
+        const option = document.createElement("option");
+        option.textContent = `${voices[i].name} (${voices[i].lang})`;
+        option.setAttribute("data-lang", voices[i].lang);
+        option.setAttribute("data-name", voices[i].name);
+        voiceSelect.appendChild(option);
+      }
+      voiceSelect.selectedIndex = selectedIndex;
+    }
+    populateVoiceList();
+    if (speechSynthesis.onvoiceschanged !== undefined) {
+      speechSynthesis.onvoiceschanged = populateVoiceList;
+    }
+    function speak() {
+      if (synth.speaking) {
+        console.error("speechSynthesis.speaking");
+        return;
+      }
+      if (inputTxt.innerText !== "") {
+        const utterThis = new SpeechSynthesisUtterance(inputTxt.innerText);
+        utterThis.lang = lang;
+        utterThis.onend = function (event) {
+          console.log("SpeechSynthesisUtterance.onend");
+        };
+        utterThis.onerror = function (event) {
+          console.error("SpeechSynthesisUtterance.onerror");
+        };
+        const selectedOption = voiceSelect.selectedOptions[0].getAttribute("data-name");
+        for (let i = 0; i < voices.length; i++) {
+          if (voices[i].name === selectedOption) {
+            utterThis.voice = voices[i];
+            break;
+          }
+        }
+        synth.speak(utterThis);
+      }
+    }
+    btn_play.onclick = function (event) {
+      speak();
+      inputTxt.blur();
+    };
+    voiceSelect.onchange = function () {
+      speak();
+    };
+  }
+  function strate_speech(el) {
+    main = el;
+    recognition(el.querySelector('.recognition'));
+    synthesis(el.querySelector('.synthesis'));
     this.start = () => {};
   }
   window.strate_speech = strate_speech;
@@ -617,6 +690,7 @@ links.forEach(link => {
     }
   };
 });
+navigator.splashscreen.hide();
 document.querySelectorAll('[data-module]').forEach(section => {
   const name = section.dataset.module.replace("-", "_");
   modules[name] = new window[name](section);

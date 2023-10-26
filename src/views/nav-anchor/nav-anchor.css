@@ -1,0 +1,28 @@
+#nav-anchor {
+    position: sticky;
+    bottom: 0;
+    height: 60px;
+    background-color: #f5f5f5;
+    width: 100%;
+   
+
+    .container{ 
+        padding-top: 10px;
+        padding-bottom: 10px;
+        overflow: hidden;
+        overflow-x: auto;
+    }
+
+
+    ul {
+    
+        display: flex;
+        gap: 30px;
+        padding-right: var(--ctr-offset);
+    }
+
+    li:not(:last-child) {
+        border-right: #d5d5d5;
+    }
+
+}

@@ -1,0 +1,28 @@
+<section class="strate-camera" id="camera" data-module="strate-camera">
+    <div class="container">
+        ${view('block-header',{
+        'title': "Plugin camera"
+        })}
+
+        <div class="xmpl">
+            <div class="button" id="btn-camera">
+                Camera Picture</div>
+            <img />
+        </div>
+
+        <div class="xmpl">
+            <div class="button" id="btn-photolib">
+                Photo Library Picture</div>
+            <img />
+        </div>
+
+
+        <div class="xmpl">
+            <div class="button" id="btn-videolib"  ontouchend="btnTouchEnd(this )">
+                Photo Library Video</div>
+            <video controls preload="metadata" />
+        </div>
+
+
+    </div>
+</section>

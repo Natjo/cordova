@@ -13,8 +13,7 @@ const src = "src/";
 const dist = "cordova/www/";
 let slug;
 
-
-const page = (literal, args) => eval("`" + fs.readFileSync(`${__dirname}/src/pages/${literal}/index.html`, "utf8") + "`");
+const page = (literal, args) => eval("`" + fs.readFileSync(`${__dirname}/src/pages/${literal}/page-${literal}.html`, "utf8") + "`");
 
 const tpl = (literal, args) => `<template id="tpl-${literal}"><div>${fs.readFileSync(`${__dirname}/src/views/${literal}/${literal}.html`, "utf8")}</div></template>`;
 
@@ -35,10 +34,7 @@ const core = {
         const slug0 = path.dirname(file).replace(__dirname + "/src/pages", "") + "/";
         slug = slug0.substring(1);
         fs.ensureDirSync(dist + slug);
-        fs.writeFileSync(
-            dist + slug + name,
-            eval("`" + fs.readFileSync(file, "utf8") + "`")
-        );
+        fs.writeFileSync(dist + slug + name,eval("`" + fs.readFileSync(file, "utf8") + "`"));
     },
     dirPage(dir) {
         const recursive = (dir) => {
@@ -47,7 +43,7 @@ const core = {
                 const stat = fs.statSync(file);
                 if (stat && stat.isDirectory()) recursive(file);
                 else if (!/.DS_Store$/.test(file)) {
-                    if (/.html/.test(file)) {
+                    if (/index.html/.test(file)) {
                         core.compilePage(file);
                     }
                 }
@@ -160,16 +156,14 @@ const core = {
                 fs.writeFileSync(dest, minify);
             });
     },
-    console(folder, filename, evt) {
+    console( filename, evt) {
         let status;
         if (evt == "remove") status = `31mremoved`;
         if (evt == "update") status = `32mupdated`;
         if (evt == "add") status = `36madded`;
         console.log(
-            `\x1b[90m\x1b[3m(${folder})\x1b[39m\x1b[23m`,
             `\x1b[1m${filename}\x1b[22m`,
-            `\x1b[${status}\x1b[39m`,
-            `\x1b[3m${core.time()}s\x1b[23m`
+            `\x1b[${status}\x1b[39m`
         );
     },
     compile_syles() {
@@ -206,33 +200,36 @@ core.compile_js();
 console.log(`${core.time()}s`);
 
 if (isProd) return;
-/*
-watch(["assets/", "pages/"], { recursive: true }, (evt, file) => {
+
+watch(["src/assets/", "src/pages/", "src/views/"], { recursive: true }, (evt, file) => {
+
     if (/.DS_Store$/.test(file)) return;
 
     core.initTime = new Date();
     const isFile = file.indexOf(".") > 0 ? true : false;
     const filename = path.basename(file);
     const ext = path.extname(filename);
-    const dist_file = dist + file;
     const folder = file.split("/")[1]; // module, view, styles, img, fonts ..
-    const view = file.split("/")[2]; // footer, header, strate-intro ..
+    const name = file.replace(`src/`, "");
 
-    if (/^pages\//.test(file)) {
+    if (/^src\/pages\//.test(file)) {
         core.compilePage(__dirname + "/" + file);
     } else {
-        if (evt == "update" || evt == "add") core.compileAssets(file, dist_file, ext);
+        if (evt == "update" || evt == "add") {
+            core.compileAssets(file, dist + name, ext);
+        }
 
         if (ext === ".css") core.compile_syles();
+        if (ext === ".js") core.compile_js();
 
         if (folder === "views" && ext === ".html") {
-            core.dirPage("pages/");
+            core.dirPage("src/pages/");
         }
     }
 
-    isFile && evt == "remove" ? fs.unlinkSync(dist_file) : core.rmDir(dist_file);
-    core.console(`${folder}-${view}`, filename, evt);
+    isFile && evt == "remove" ? fs.unlinkSync(dist + name) : core.rmDir(dist + name);
+    core.console(filename, evt);
 });
-*/
+
 
 console.log(`I'm Watching you...`);

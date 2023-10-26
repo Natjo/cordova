@@ -1,7 +1,8 @@
 <div class="content-realisation">
     <h1 class="title tl2">${args.title}</h1>
-    <time class="date">${args.date}</time>
-    <div class="chapo">${args.chapo}</div>
+    <div class="label">${args.label}</div>
     <img class="image" src="${args.image}">
-    <div class="text rte">${args.text}</div>
+    <video controls mutedautoplay poster="${args.poster}">
+        <source src="${args.video}" type="video/mp4" />
+    </video>
 </div>

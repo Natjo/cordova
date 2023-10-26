@@ -4,7 +4,12 @@
 <head>
     <meta charset="utf-8">
     <title>Myapp</title>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://api.openweathermap.org/ data: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+    <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self' https://livrable.lonsdale.fr/ https://api.openweathermap.org/ data: https://ssl.gstatic.com 'unsafe-eval'; 
+    style-src 'self' 'unsafe-inline'; 
+    media-src *; 
+    video-src 'self' https://livrable.lonsdale.fr/ data: content:;
+    img-src 'self' data: content:;">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover, user-scalable=no">
@@ -19,7 +24,6 @@
     <div class="main-wrapper">
         ${view('headernav')}
 
-
         ${page('homepage')}
 
         ${page('actualites')}
@@ -30,7 +34,6 @@
 
         ${page('goodies')}
 
-
         ${view('footer')}
     </div>
 
@@ -40,8 +43,6 @@
         <div class="panel-content">
         </div>
     </div>
-
-    <div id="splashscreen"></div>
 
     <script src="cordova.js"></script>
     <script src="assets/index.js"></script>

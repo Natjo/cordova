@@ -2,7 +2,7 @@
 <widget id="cordova" version="1.0.0"
     xmlns="http://www.w3.org/ns/widgets"
     xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>myapp</name>
+    <name>lonsdaleapp</name>
     <description>Sample Apache Cordova App</description>
     <author email="dev@cordova.apache.org" href="https://cordova.apache.org">
         Apache Cordova Team
@@ -30,14 +30,16 @@
     <edit-config target="NSMicrophoneUsageDescription" file="*-Info.plist" mode="merge">
         <string>Micro</string>
     </edit-config>
-        <edit-config target="NSSpeechRecognitionUsageDescription" file="*-Info.plist" mode="merge">
+    <edit-config target="NSSpeechRecognitionUsageDescription" file="*-Info.plist" mode="merge">
         <string>Micro</string>
     </edit-config>
-     
-
+    <preference name="FadeSplashScreen" value="false"/>
 
     <preference name="BackgroundColor" value="#000"/>
-    <preference name="SplashScreenBackgroundColor " value="#000"/>
+    <preference name="FadeSplashScreenDuration" value="800"/>
+    <splash src="www/assets/img/launch.png" />
+    <preference name="AutoHideSplashScreen" value="false" />
+    <preference name="SplashScreenDelay" value="0" />
 
     <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="StatusBarBackgroundColor" value="#000" />

@@ -3,17 +3,16 @@ const nav = document.querySelector('nav');
 const links = document.querySelectorAll("a");
 const mains = document.querySelectorAll('main');
 const main_wrapper = document.querySelector('.main-wrapper');
+const splashscreen = document.getElementById('splashscreen');
+
 let slug = '/homepage';
 let main_active = mains[0];
-
 let modules = {};
-
 
 function page() {
     // method onleave du module
     main_active.querySelectorAll('[data-module]').forEach(section => {
         const name = section.dataset.module.replace("-", "_");
-      
         if (typeof modules[name].onleave === 'function') modules[name].onleave();
     });
 
@@ -33,6 +32,10 @@ function page() {
         const name = section.dataset.module.replace("-", "_");
         if (typeof modules[name].start === 'function') modules[name].start();
     });
+    setTimeout(() => {
+        splashscreen.classList.add('hide');
+    }, 1000)
+
 }
 
 links.forEach(link => {
@@ -62,10 +65,15 @@ links.forEach(link => {
                     page();
                 }, { once: true })
             }
+        } else {
+            main_wrapper.classList.remove("show");
+            main_wrapper.classList.remove("hide");
+            main_wrapper.classList.remove("hide-right");
         }
     }
 });
 
+navigator.splashscreen.hide();
 
 // load module 
 document.querySelectorAll('[data-module]').forEach(section => {

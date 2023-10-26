@@ -1,45 +1,46 @@
 
 
 (function () {
+
+    function getTemplate(selector, args) {
+
+        const template = document.getElementById(selector);
+
+        const clone = template.content.cloneNode(true);
+
+        return eval("`" + clone.firstElementChild.innerHTML + "`");
+    }
+
     function strate_news(el) {
 
         const result = el.querySelector('ul');
         const main_wrapper = document.querySelector(".main-wrapper");
         const panel = document.querySelector('.panel');
+        const panel_content = panel.querySelector('.panel-content');
+
 
         const xhr = new XMLHttpRequest();
         xhr.open('GET', "https://livrable.lonsdale.fr/cordova/test.json");
         xhr.send();
         xhr.onload = () => {
-
             const data = JSON.parse(xhr.response);
 
-            let html = "";
             for (let i = 0; i < data.news.length; i++) {
                 const item = data.news[i];
-                html += `
-                <li data-index="${i}">
-                    <div class="card-news">
-                        <h3 class="tl3">${item.title}</h3> 
-                        <time>${item.date}<time>
-                        <img src="${item.image}">
-                    </div>
-                </li>`;
+                const args = {
+                    title: item.title,
+                    data: item.date,
+                    desc: item.desc,
+                    image: item.image,
+                };
+
+                result.insertAdjacentHTML('beforeend', `<li>${getTemplate("tpl-card-news", args)}</li>`);
             }
-            result.innerHTML = html;
 
-            result.querySelectorAll("li").forEach(element => {
+            result.querySelectorAll("li").forEach((element, num) => {
                 element.onclick = () => {
-
-                    const num = Number(element.dataset.index);
                     const item = data.news[num];
-                    const html = `
-                        <h1 class="tl2">${item.title}</h1> 
-                        <time>${item.date}<time>
-                        <div class="chapo">${item.chapo}<div>
-                        <img src="${item.image}">
-                        <div class="rte">${item.image}</div> 
-                    </div>`;
+
                     panel.querySelector('.btn-back').onclick = () => {
                         panel.classList.remove("display");
                         main_wrapper.classList.add("show");
@@ -48,19 +49,22 @@
                             main_wrapper.classList.remove("hide");
                         }, { once: true })
                     }
-                    panel.querySelector('.page-content').innerHTML = html;
+
+                    // template page to panel
+                    const args = {
+                        title: item.title,
+                        date: item.date,
+                        image: item.image,
+                        text: item.text
+                    }
+                    panel_content.innerHTML = getTemplate("tpl-content-news", args);
 
                     panel.classList.add("display");
-
-
                     main_wrapper.classList.add("hide");
-
-
                 }
-
             });;
-
         };
+
         this.start = () => {
 
         }
