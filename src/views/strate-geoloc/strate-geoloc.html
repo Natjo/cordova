@@ -1,0 +1,69 @@
+<section class="strate-geoloc" id="geoloc" data-module="strate-geoloc">
+    <div class="container">
+        ${view('block-header',{
+        'title': "Web Geolocalisation API"
+        })}
+
+        <div id="meteo">
+            <h3 class="name tl3"></h3>
+
+            <div>
+                <div class="temperature"></div>
+                <div class="temperature_feellike"></div>
+                <div class="humidity"></div>
+                <div class="wind_speed"></div>
+            </div>
+
+            <img src="" class="cloud">
+        </div>
+        <hr>
+        <div class="geoloc" id="locate">
+            <div class="geoloc-city"></div>
+            <div class="geoloc-lat"></div>
+            <div class="geoloc-lng"></div>
+            <div class="geoloc-altitude"></div>
+            <div class="geoloc-heading"></div>
+
+            <button class="btn-location">Locate me</button>
+        </div>
+
+        <hr>
+
+        <div id="friends">
+            <h3>Get friend position</h3>
+            <!-- https://github.com/mdoudy90/find-my-friends -->
+            <ul>
+                <li>
+                    <h3>Gerard picsum</h3>
+                    <h4>Paris</h4>
+                    <div class="lng">55.234</div>
+                    <div class="lat">5.234</div>
+                </li>
+            </ul>
+        </div>
+
+        <hr>
+
+        <div id="speed">
+            <div class="speed">20<small>km/h</small> </div>
+
+            <svg class="gauge" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 300 100" height="80">
+                <g fill="#fff">
+                    <rect y="90" width="29" height="10" />
+                    <rect x="30" y="80" width="29" height="20" />
+                    <rect x="60" y="70" width="29" height="30" />
+                    <rect x="90" y="60" width="29" height="40" />
+                    <rect x="120" y="50" width="29" height="50" />
+                    <rect x="150" y="40" width="29" height="60" />
+                    <rect x="180" y="30" width="29" height="70" />
+                    <rect x="210" y="20" width="29" height="80" />
+                    <rect x="240" y="10" width="29" height="90" />
+                    <rect x="270" width="29" height="100" />
+                </g>
+            </svg>
+            <!-- https://enjeck.com/blog/distance-two-locations/ -->
+            <div class="distance"></div>
+            <button class="btn-speed"></button>
+        </div>
+    </div>
+</section>

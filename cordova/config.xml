@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="cordova" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="cordova" version="1.0.0"
+    xmlns="http://www.w3.org/ns/widgets"
+    xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>lonsdaleapp</name>
 
     <description>Sample Apache Cordova App</description>
@@ -13,7 +15,9 @@
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="mailto:*" />
-
+  <feature name="Geolocation">
+      <param name="ios-package" value="CDVLocation" />
+  </feature>
     <edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
         <string>need camera access to take pictures</string>
     </edit-config>
@@ -28,13 +32,29 @@
     </edit-config>
 
     <edit-config target="NSMicrophoneUsageDescription" file="*-Info.plist" mode="merge">
-        <string>Micro</string>
+        <string>need Micro access</string>
     </edit-config>
     <edit-config target="NSSpeechRecognitionUsageDescription" file="*-Info.plist" mode="merge">
-        <string>Micro</string>
+        <string>need location access to find things nearby</string>
     </edit-config>
-    <preference name="FadeSplashScreen" value="false"/>
 
+
+
+    <edit-config target="NSLocationUsageDescription" file="*-Info.plist" mode="merge">
+        <string>need location access to find things nearby</string>
+    </edit-config>
+    <edit-config target="NSLocationWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
+        <string>need location access to find things nearby</string>
+    </edit-config>
+    <edit-config target="NSLocationAlwaysAndWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
+        <string>need location access to find things nearby</string>
+    </edit-config>
+    <edit-config target="NSLocationAlwaysUsageDescription" file="*-Info.plist" mode="merge">
+        <string>need location access to find things nearby</string>
+    </edit-config>
+
+
+    <preference name="FadeSplashScreen" value="false"/>
     <preference name="BackgroundColor" value="#000"/>
     <preference name="FadeSplashScreenDuration" value="800"/>
     <splash src="www/assets/img/launch.png" />

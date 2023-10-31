@@ -385,6 +385,92 @@
   window.strate_dashboard = strate_dashboard;
 })();
 (function () {
+  function strate_geoloc(el) {
+    const options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    };
+    function display(pos) {
+      const crd = pos.coords;
+      el.querySelector('.geoloc-lat').innerHTML = `Latitude : ${crd.latitude}`;
+      el.querySelector('.geoloc-lng').innerHTML = `Longitude : ${crd.longitude}`;
+      el.querySelector('.geoloc-altitude').innerHTML = `Altitude : ${crd.altitude}`;
+      el.querySelector('.geoloc-heading').innerHTML = `Heading : ${crd.heading}`;
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', `https://api-adresse.data.gouv.fr/reverse/?lat=${crd.latitude}&lon=${crd.longitude}`);
+      xhr.send();
+      xhr.onload = () => {
+        const data = JSON.parse(xhr.response);
+        console.log(data);
+        el.querySelector('.geoloc-city').innerHTML = data.features[0].properties.city;
+      };
+    }
+    function meteo(pos) {
+      const crd = pos.coords;
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', `https://api.openweathermap.org/data/2.5/weather?&lang=fr&lat=${crd.latitude}&lon=${crd.longitude}&units=metric&appid=2cf13efac4223f0890daf638301d7e84`);
+      xhr.send();
+      xhr.onload = () => {
+        const data = JSON.parse(xhr.response);
+        el.querySelector('.name').innerHTML = `${data.name} - <i>${data.weather[0].description}</i>`;
+        el.querySelector('.cloud').src = `assets/img/clouds/${data.weather[0].icon}@2x.png`;
+        el.querySelector('.temperature').innerHTML = `Température: <b>${data.main.temp}°C</b>`;
+        el.querySelector('.temperature_feellike').innerHTML = `Ressenti: <b>${data.main.feels_like}°C</b>`;
+        el.querySelector('.humidity').innerHTML = `Humidité: <b>${data.main.humidity}%</b>`;
+        el.querySelector('.wind_speed').innerHTML = `Vent: <b>${data.wind.speed}km/h</b>`;
+      };
+    }
+    function error(err) {
+      console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
+    el.querySelector('.btn-location').onclick = () => {
+      navigator.geolocation.getCurrentPosition(display, error, options);
+    };
+    navigator.geolocation.getCurrentPosition(meteo, error, options);
+    var id_speed;
+    const deg2rads = function (degrees) {
+      return degrees * (Math.PI / 180);
+    };
+    const distanceBetweenPoints = function (lat1, lon1, lat2, lon2, R = 6371) {
+      return Math.acos(Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1)) * R;
+    };
+    london = {
+      lat: 51.511214,
+      long: -0.119824
+    };
+    function distanceBetween(position) {
+      var dlKilometers, latRads, longRads;
+      latRads = deg2rads(position.coords.latitude);
+      longRads = deg2rads(position.coords.longitude);
+      london.latRads = deg2rads(london.lat);
+      london.longRads = deg2rads(london.long);
+      dlKilometers = distanceBetweenPoints(latRads, longRads, london.latRads, london.longRads);
+      return dlKilometers.toFixed(2);
+    }
+    function watch(pos) {
+      const crd = pos.coords;
+      el.querySelector(".speed").innerHTML = crd.latitude;
+      el.querySelector(".distance").innerHTML = `${distanceBetween(pos)} km`;
+    }
+    const btn_speed = el.querySelector('.btn-speed');
+    btn_speed.onclick = () => {
+      if (btn_speed.classList.contains('active')) {
+        navigator.geolocation.clearWatch(id_speed);
+      } else {
+        id_speed = navigator.geolocation.watchPosition(watch, error, {
+          enableHighAccuracy: false,
+          timeout: 5000,
+          maximumAge: 0
+        });
+      }
+      btn_speed.classList.toggle('active');
+    };
+    this.start = () => {};
+  }
+  window.strate_geoloc = strate_geoloc;
+})();
+(function () {
   function getTemplate(selector, args) {
     const template = document.getElementById(selector);
     const clone = template.content.cloneNode(true);
@@ -504,56 +590,66 @@
   window.strate_sampler = strate_sampler;
 })();
 (function () {
-  let main;
-  function recognition(el) {
-    var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    var recognition = new SpeechRecognition();
-    var text = "";
-    recognition.continuous = false;
-    recognition.lang = "fr-FR";
-    recognition.onresult = function (event) {
-      var current = event.resultIndex;
-      var transcript = event.results[current][0].transcript;
-      var mobileRepeatBug = current == 1 && transcript == event.results[0][0].transcript;
-      text = transcript.toLowerCase();
-      el.querySelector('.result').innerHTML = text;
-      if (!mobileRepeatBug) {
-        const arr = ['julien', 'johan', 'aurélien', 'sophie', 'anthony', 'léo', 'philippe', 'brian', 'mathieu'];
-        let result = null;
-        for (let i = 0; i < arr.length; i++) {
-          if (text.includes(arr[i])) {
-            result = arr[i];
-          }
-        }
-        if (result) {
-          el.querySelector('img').src = `assets/img/people/${result}.png`;
-        }
-      }
-      ;
-      recognition.onstart = function () {};
-      recognition.onspeechend = function () {};
-      recognition.onerror = function (event) {
-        if (event.error == 'no-speech') {}
-        ;
-      };
+  function geoloc(el) {
+    const options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
     };
+    function success(pos) {
+      const crd = pos.coords;
+      el.querySelector('.geoloc-lat').innerHTML = `Latitude : ${crd.latitude}`;
+      el.querySelector('.geoloc-lng').innerHTML = `Longitude : ${crd.longitude}`;
+      el.querySelector('.geoloc-altitude').innerHTML = `Altitude : ${crd.altitude}`;
+    }
+    function error(err) {
+      console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
+    el.querySelector('.btn-location').onclick = () => {
+      navigator.geolocation.getCurrentPosition(success, error, options);
+    };
+  }
+  function recognition(el) {
+    var settings = {
+      language: "fr-FR",
+      showPopup: true
+    };
+    window.plugins.speechRecognition.requestPermission(function () {}, function (err) {});
+    function toNormalForm(str) {
+      return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    }
     const btn_speak = el.querySelector('.btn-speak');
     btn_speak.onclick = () => {
       if (btn_speak.classList.contains('active')) {
-        recognition.stop();
+        window.plugins.speechRecognition.stopListening();
         btn_speak.classList.remove('active');
       } else {
-        recognition.start();
+        window.plugins.speechRecognition.startListening(function (result) {
+          console.log(result);
+          text = result[0].toLowerCase();
+          el.querySelector('.result').innerHTML = text;
+          const arr = ['julien', 'johan', 'aurélien', 'sophie', 'anthony', 'léo', 'philippe', 'bryan', 'mathieu', 'édouard'];
+          let aze = null;
+          for (let i = 0; i < arr.length; i++) {
+            if (text.includes(arr[i])) {
+              aze = arr[i].replace(/[é]/, "e");
+            }
+          }
+          if (aze) {
+            el.querySelector('img').src = `assets/img/people/${aze}.png`;
+          }
+        }, function (err) {
+          console.log(err);
+        }, settings);
         btn_speak.classList.add('active');
       }
     };
   }
   function synthesis(el) {
     const synth = window.speechSynthesis;
-    const btn_play = el.querySelector("button");
-    const inputTxt = main.querySelector(".result");
+    const btn_play = el.querySelector(".btn-play");
+    const inputTxt = el.querySelector(".result");
     const voiceSelect = el.querySelector(".select-voices");
-    const langSelect = el.querySelector(".select-lang");
     let lang = "en-US";
     let voices = [];
     function populateVoiceList() {
@@ -568,7 +664,7 @@
           return +1;
         }
       });
-      const selectedIndex = voiceSelect.selectedIndex < 0 ? 0 : voiceSelect.selectedIndex;
+      const selectedIndex = voiceSelect.selectedIndex < 0 ? 8 : voiceSelect.selectedIndex;
       voiceSelect.innerHTML = "";
       for (let i = 0; i < voices.length; i++) {
         const option = document.createElement("option");
@@ -588,8 +684,8 @@
         console.error("speechSynthesis.speaking");
         return;
       }
-      if (inputTxt.innerText !== "") {
-        const utterThis = new SpeechSynthesisUtterance(inputTxt.innerText);
+      if (inputTxt.value !== "") {
+        const utterThis = new SpeechSynthesisUtterance(inputTxt.value);
         utterThis.lang = lang;
         utterThis.onend = function (event) {
           console.log("SpeechSynthesisUtterance.onend");
@@ -616,9 +712,9 @@
     };
   }
   function strate_speech(el) {
-    main = el;
-    recognition(el.querySelector('.recognition'));
-    synthesis(el.querySelector('.synthesis'));
+    recognition(el);
+    synthesis(el);
+    geoloc(el);
     this.start = () => {};
   }
   window.strate_speech = strate_speech;
@@ -649,9 +745,6 @@ function page() {
     const name = section.dataset.module.replace("-", "_");
     if (typeof modules[name].start === 'function') modules[name].start();
   });
-  setTimeout(() => {
-    splashscreen.classList.add('hide');
-  }, 1000);
 }
 links.forEach(link => {
   link.onclick = e => {

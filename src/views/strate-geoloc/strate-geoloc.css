@@ -1,0 +1,61 @@
+.strate-geoloc {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    background-color: var(--color-5);
+
+    .btn-location,
+    .btn-location-start,
+    .btn-location-end,
+    .btn-speed {
+        border: 2px solid #fff;
+        padding: 5px 10px;
+    }
+
+    #meteo {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        font-size: 1.8rem;
+
+        h3 {
+            display: block;
+            grid-column: 1/-1;
+            margin-bottom: 20px;
+
+            i {
+                font-weight: 300;
+            }
+        }
+    }
+
+    hr {
+        border: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+    }
+
+    #speed {
+        .speed {
+            font-size: 50px;
+            margin-bottom: -40px;
+
+            small {
+                font-size: 30px;
+            }
+        }
+
+        .gauge {
+            margin: 20px auto;
+        }
+
+        .btn-speed {
+            &:before {
+                content: "start";
+            }
+
+            &.active:before {
+                content: "stop";
+            }
+        }
+    }
+}

@@ -2,74 +2,140 @@
 
 (function () {
 
-    let main;
+
+    function geoloc(el) {
+        const options = {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0,
+        };
+
+        function success(pos) {
+            const crd = pos.coords;
+            el.querySelector('.geoloc-lat').innerHTML = `Latitude : ${crd.latitude}`;
+            el.querySelector('.geoloc-lng').innerHTML = `Longitude : ${crd.longitude}`;
+            el.querySelector('.geoloc-altitude').innerHTML = `Altitude : ${crd.altitude}`;
+            /* console.log("Your current position is:");
+             console.log(`Latitude : ${crd.latitude}`);
+             console.log(`Longitude: ${crd.longitude}`);
+             console.log(`More or less ${crd.accuracy} meters.`);
+           console.log(`altitude ${crd.altitude} meters.`);*/
+        }
+
+        function error(err) {
+            console.warn(`ERROR(${err.code}): ${err.message}`);
+        }
+
+
+        el.querySelector('.btn-location').onclick = () => {
+            navigator.geolocation.getCurrentPosition(success, error, options);
+
+        }
+    }
 
     function recognition(el) {
-        var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        var recognition = new SpeechRecognition();
-        var text = "";
+        /*  var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+          var recognition = new SpeechRecognition();
+          var text = "";
+  
+          recognition.continuous = false;
+          recognition.lang = "fr-FR";
+  
+          recognition.onresult = function (event) {
+              var current = event.resultIndex;
+              var transcript = event.results[current][0].transcript;
+              var mobileRepeatBug = (current == 1 && transcript == event.results[0][0].transcript);
+              text = transcript.toLowerCase();
+  
+              el.querySelector('.result').innerHTML = text;
+              if (!mobileRepeatBug) {
+  
+                  const arr = ['julien', 'johan', 'aurélien', 'sophie', 'anthony', 'léo', 'philippe', 'brian', 'mathieu'];
+  
+                  let result = null;
+  
+                  for (let i = 0; i < arr.length; i++) {
+                      if (text.includes(arr[i])) {
+                          result = arr[i];
+                      }
+                  }
+                  if (result) {
+                      el.querySelector('img').src = `assets/img/people/${result}.png`;
+  
+  
+                  }
+              };
+  
+              recognition.onstart = function () { }
+  
+              recognition.onspeechend = function () {
+                  //el.querySelector('.result').innerHTML = "erer" + text
+              }
+  
+              recognition.onerror = function (event) {
+                  if (event.error == 'no-speech') {
+                  };
+              }
+          }*/
 
-        recognition.continuous = false;
-        recognition.lang = "fr-FR";
 
-        recognition.onresult = function (event) {
-            var current = event.resultIndex;
-            var transcript = event.results[current][0].transcript;
-            var mobileRepeatBug = (current == 1 && transcript == event.results[0][0].transcript);
-            text = transcript.toLowerCase();
+        var settings = {
+            language: "fr-FR",
+            showPopup: true
+        };
 
-            el.querySelector('.result').innerHTML = text;
-            if (!mobileRepeatBug) {
-
-                const arr = ['julien', 'johan', 'aurélien', 'sophie', 'anthony', 'léo', 'philippe', 'brian', 'mathieu'];
-
-                let result = null;
-
-                for (let i = 0; i < arr.length; i++) {
-                    if (text.includes(arr[i])) {
-                        result = arr[i];
-                    }
-                }
-                if (result) {
-                    el.querySelector('img').src = `assets/img/people/${result}.png`;
-
-
-                }
-            };
-
-            recognition.onstart = function () { }
-
-            recognition.onspeechend = function () {
-                //el.querySelector('.result').innerHTML = "erer" + text
-            }
-
-            recognition.onerror = function (event) {
-                if (event.error == 'no-speech') {
-                };
-            }
+        window.plugins.speechRecognition.requestPermission(function () {
+            // Requested
+        }, function (err) {
+            // Opps, nope
+        });
+        function toNormalForm(str) {
+            return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
         }
 
         const btn_speak = el.querySelector('.btn-speak');
         btn_speak.onclick = () => {
             if (btn_speak.classList.contains('active')) {
-                recognition.stop();
+                // recognition.stop();
+                window.plugins.speechRecognition.stopListening();
                 btn_speak.classList.remove('active');
             } else {
-                recognition.start();
+                // recognition.start();
+                window.plugins.speechRecognition.startListening(function (result) {
+                    console.log(result);
+                    text = result[0].toLowerCase();
+                    el.querySelector('.result').innerHTML = text;
+
+                    const arr = ['julien', 'johan', 'aurélien', 'sophie', 'anthony', 'léo', 'philippe', 'bryan', 'mathieu', 'édouard'];
+                    let aze = null;
+
+                    for (let i = 0; i < arr.length; i++) {
+                        if (text.includes(arr[i])) {
+                           // aze = arr[i].replace("é","è","à","û","e","ù","î","ç");
+                            aze = arr[i].replace(/[é]/,"e");
+                        }
+                    }
+                    if (aze) {
+                        el.querySelector('img').src = `assets/img/people/${aze}.png`;
+                    }
+                }, function (err) {
+                    console.log(err);
+                }, settings);
+
                 btn_speak.classList.add('active');
             }
         }
+
+
     }
 
     function synthesis(el) {
         const synth = window.speechSynthesis;
 
-        const btn_play = el.querySelector("button");
-        const inputTxt = main.querySelector(".result");
+        const btn_play = el.querySelector(".btn-play");
+        const inputTxt = el.querySelector(".result");
         const voiceSelect = el.querySelector(".select-voices");
-        const langSelect = el.querySelector(".select-lang");
-let lang = "en-US";
-   
+        let lang = "en-US";
 
         let voices = [];
 
@@ -86,9 +152,9 @@ let lang = "en-US";
                     return +1;
                 }
             });
-            
-            const selectedIndex = voiceSelect.selectedIndex < 0 ? 0 : voiceSelect.selectedIndex;
-            
+
+            const selectedIndex = voiceSelect.selectedIndex < 0 ? 8 : voiceSelect.selectedIndex;
+
             voiceSelect.innerHTML = "";
 
             for (let i = 0; i < voices.length; i++) {
@@ -113,8 +179,8 @@ let lang = "en-US";
                 return;
             }
 
-            if (inputTxt.innerText !== "") {
-                const utterThis = new SpeechSynthesisUtterance(inputTxt.innerText);
+            if (inputTxt.value !== "") {
+                const utterThis = new SpeechSynthesisUtterance(inputTxt.value);
                 utterThis.lang = lang;
 
                 utterThis.onend = function (event) {
@@ -134,7 +200,7 @@ let lang = "en-US";
                         break;
                     }
                 }
-            
+
                 synth.speak(utterThis);
             }
         }
@@ -150,10 +216,9 @@ let lang = "en-US";
     }
 
     function strate_speech(el) {
-        main = el;
-        recognition(el.querySelector('.recognition'));
-        synthesis(el.querySelector('.synthesis'));
-
+        recognition(el);
+        synthesis(el);
+        geoloc(el);
         this.start = () => {
         }
     }

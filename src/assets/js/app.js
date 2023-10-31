@@ -32,10 +32,6 @@ function page() {
         const name = section.dataset.module.replace("-", "_");
         if (typeof modules[name].start === 'function') modules[name].start();
     });
-    setTimeout(() => {
-        splashscreen.classList.add('hide');
-    }, 1000)
-
 }
 
 links.forEach(link => {
