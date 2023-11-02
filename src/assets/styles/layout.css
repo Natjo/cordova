@@ -9,7 +9,7 @@ body {
     /* Padding to avoid the "unsafe" areas behind notches in the screen 
     padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
     */
-padding: 0;
+    padding: 0;
     height: 100vh;
     margin: 0;
 }
@@ -17,12 +17,12 @@ padding: 0;
 html {
     font-size: 62.5%;
     background-color: #000;
-  
+
 }
 
 body {
     font-family: var(--font-1);
-    font-size: var(--font-size);
+    font-size: 1.6rem;
     color: var(--color-text);
     line-height: 1.4;
     background-color: #000;
@@ -82,7 +82,7 @@ main {
     box-sizing: border-box;
     overflow-y: auto;
 
-    .btn-back{
+    .btn-back {
         margin-bottom: 20px;
     }
 

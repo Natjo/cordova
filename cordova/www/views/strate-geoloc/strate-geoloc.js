@@ -62,9 +62,14 @@
       dlKilometers = distanceBetweenPoints(latRads, longRads, london.latRads, london.longRads);
       return dlKilometers.toFixed(2);
     }
+    let maxspeed = 0;
     function watch(pos) {
       const crd = pos.coords;
-      el.querySelector(".speed").innerHTML = crd.latitude;
+      if (crd.speed > maxspeed) {
+        maxspeed = crd.speed.toFixed(2);
+      }
+      el.querySelector(".speed span").innerHTML = crd.speed.toFixed(2);
+      el.querySelector(".maxspeed span").innerHTML = maxspeed;
       el.querySelector(".distance").innerHTML = `${distanceBetween(pos)} km`;
     }
     const btn_speed = el.querySelector('.btn-speed');

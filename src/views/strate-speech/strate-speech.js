@@ -2,37 +2,6 @@
 
 (function () {
 
-
-    function geoloc(el) {
-        const options = {
-            enableHighAccuracy: true,
-            timeout: 5000,
-            maximumAge: 0,
-        };
-
-        function success(pos) {
-            const crd = pos.coords;
-            el.querySelector('.geoloc-lat').innerHTML = `Latitude : ${crd.latitude}`;
-            el.querySelector('.geoloc-lng').innerHTML = `Longitude : ${crd.longitude}`;
-            el.querySelector('.geoloc-altitude').innerHTML = `Altitude : ${crd.altitude}`;
-            /* console.log("Your current position is:");
-             console.log(`Latitude : ${crd.latitude}`);
-             console.log(`Longitude: ${crd.longitude}`);
-             console.log(`More or less ${crd.accuracy} meters.`);
-           console.log(`altitude ${crd.altitude} meters.`);*/
-        }
-
-        function error(err) {
-            console.warn(`ERROR(${err.code}): ${err.message}`);
-        }
-
-
-        el.querySelector('.btn-location').onclick = () => {
-            navigator.geolocation.getCurrentPosition(success, error, options);
-
-        }
-    }
-
     function recognition(el) {
         /*  var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
           var recognition = new SpeechRecognition();
@@ -153,7 +122,7 @@
                 }
             });
 
-            const selectedIndex = voiceSelect.selectedIndex < 0 ? 8 : voiceSelect.selectedIndex;
+            const selectedIndex = voiceSelect.selectedIndex < 0 ? 4 : voiceSelect.selectedIndex;
 
             voiceSelect.innerHTML = "";
 
@@ -218,7 +187,7 @@
     function strate_speech(el) {
         recognition(el);
         synthesis(el);
-        geoloc(el);
+  
         this.start = () => {
         }
     }

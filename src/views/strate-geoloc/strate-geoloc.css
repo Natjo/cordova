@@ -37,18 +37,21 @@
     #speed {
         .speed {
             font-size: 50px;
-            margin-bottom: -40px;
+            margin-top: -10px;
+            margin-bottom: 10px;
 
             small {
                 font-size: 30px;
             }
         }
 
-        .gauge {
-            margin: 20px auto;
+        .maxspeed,.averagespeed{
+            font-size: 20px;
+            font-style: italic;
         }
 
         .btn-speed {
+            margin-top: 20px;
             &:before {
                 content: "start";
             }

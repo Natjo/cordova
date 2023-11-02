@@ -70,8 +70,8 @@
                 for (let groupName in muteGroups) {
                     this.createMuteGroup(groupName, muteGroups[groupName]);
                 }
-                var masterSlider = Object.create(GainSlider);
-                masterSlider.connect(document.querySelector('#master'), this.output.gain);
+              //  var masterSlider = Object.create(GainSlider);
+               // masterSlider.connect(document.querySelector('#master'), this.output.gain);
             },
             /**
              * Creates a new mute group – a group of pads of which only one can play at once.
@@ -346,49 +346,7 @@
         /**
          * A slider to control an AudioGainNode.
          */
-        var GainSlider = {
-            input: null,
-            /**
-             * Connects the slider to an input and a target.
-             * @param {Object} input A DOM element which will be used to control the slider.
-             * @param {AudioGainNode} target The gain the slider should control.
-             */
-            connect: function (input, target) {
-                this.setTarget(target);
-                this.setInput(input);
-            },
-            /**
-             * Sets the slider's target – the gain it controls.
-             * @param {AudioGainNode} gain The gain the slider should control.
-             */
-            setTarget: function (gain) {
-                this.target = gain;
-            },
-            /**
-             * Sets the slider's input – the element used to control it.
-             * @param {Object} input The DOM element that should control the slider.
-             */
-            setInput: function (input) {
-                if (this.input) {
-                    this.input.removeEventListener('input', this.handleInput.bind(this), false);
-                }
-                this.input = input;
-                this.input.addEventListener('input', this.handleInput.bind(this), false);
-            },
-            /**
-             * Receives input for the slider.
-             * @param {event} inputEvent The event providing input.
-             */
-            handleInput: function (inputEvent) {
-                if (inputEvent.target.value > 1) {
-                    this.target.value = 1;
-                } else if (inputEvent.target.value < -1) {
-                    this.target.value = -1;
-                } else {
-                    this.target.value = inputEvent.target.value;
-                }
-            },
-        };
+  
         init()
         //document.addEventListener('DOMContentLoaded', init, false);
     }

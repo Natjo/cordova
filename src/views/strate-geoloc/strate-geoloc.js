@@ -67,7 +67,7 @@
             long: -0.119824
         };
         function distanceBetween(position) {
-            var  dlKilometers, latRads, longRads;
+            var dlKilometers, latRads, longRads;
             latRads = deg2rads(position.coords.latitude);
             longRads = deg2rads(position.coords.longitude);
             london.latRads = deg2rads(london.lat);
@@ -76,9 +76,15 @@
             return dlKilometers.toFixed(2);
         }
 
+        let maxspeed = 0;
+
         function watch(pos) {
             const crd = pos.coords;
-            el.querySelector(".speed").innerHTML = crd.latitude;
+            if (crd.speed>maxspeed) {
+                maxspeed = crd.speed.toFixed(2);
+            }
+            el.querySelector(".speed span").innerHTML = crd.speed.toFixed(2);
+            el.querySelector(".maxspeed span").innerHTML = maxspeed;
             el.querySelector(".distance").innerHTML = `${distanceBetween(pos)} km`;
         }
 
@@ -96,8 +102,6 @@
             }
             btn_speed.classList.toggle('active')
         };
-
-
 
         this.start = () => {
         }

@@ -201,13 +201,6 @@
             <button class="padGrid-pad" type="button"></button>
         </div>
     </div>
-
-    <aside>
-        <form class="controlset" id="master_controls">
-            <label for="master">Master gain:</label>
-            <input type="range" id="master" min="0" max="1" value="0.7" step="0.1">
-        </form>
-    </aside>
 </section>
 
     <section class="strate-camera" id="camera" data-module="strate-camera">
@@ -239,46 +232,32 @@
     </div>
 </section>
 
-    <section class="strate-speech" id="speech" data-module="strate-speech">
-    <div class="container">
-        <header class="block-header">
+    <section class="strate-speech container" id="speech" data-module="strate-speech">
+    <header class="block-header">
     <h2 class="tl2">Web Speech API</h2>
 </header>
 
-        <div class="geoloc">
-            <div class="geoloc-lat">
-            </div>
-            <div class="geoloc-lng">
-            </div>
-            <div class="geoloc-altitude">
-            </div>
-            <button class="btn-location">Locate me</button>
-        </div>
-      
-        <select class="select-voices"></select>
+    <select class="select-voices"></select>
 
-        <div class="part">
-            <img src="assets/img/people/johan.png" alt="">
+    <div class="part">
+        <textarea class="result">Bonjour, aujourd'hui il fait beau et les oiseaux chantent</textarea>
 
-            <textarea class="result">Bonjour, aujourd'hui il fait beau et les oiseaux chantent</textarea>
-        </div>
+        <img src="assets/img/people/johan.png" alt="">
+    </div>
 
-        <div class="controls">
-            <button class="btn-speak">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 37.3 32" width="37.34" height="32" xml:space="preserve">
-                    <path fill="#fff" class="bullet" d="M13.3,13.3c0,0.7-0.3,1.4-0.8,1.9C12,15.7,11.4,16,10.7,16c-0.7,0-1.4-0.3-1.9-0.8C8.3,14.7,8,14.1,8,13.3 s0.3-1.4,0.8-1.9c0.5-0.5,1.1-0.8,1.9-0.8c0.7,0,1.4,0.3,1.9,0.8C13.1,12,13.3,12.6,13.3,13.3z" />
-                    <path fill="#fff" class="bullet" d="M21.3,13.3c0,0.7-0.3,1.4-0.8,1.9S19.4,16,18.7,16c-0.7,0-1.4-0.3-1.9-0.8c-0.5-0.5-0.8-1.1-0.8-1.9s0.3-1.4,0.8-1.9 c0.5-0.5,1.1-0.8,1.9-0.8c0.7,0,1.4,0.3,1.9,0.8C21.1,12,21.3,12.6,21.3,13.3z" />
-                    <path fill="#fff" class="bullet" d="M29.3,13.3c0,0.7-0.3,1.4-0.8,1.9S27.4,16,26.7,16c-0.7,0-1.4-0.3-1.9-0.8c-0.5-0.5-0.8-1.1-0.8-1.9s0.3-1.4,0.8-1.9 c0.5-0.5,1.1-0.8,1.9-0.8c0.7,0,1.4,0.3,1.9,0.8C29.1,12,29.3,12.6,29.3,13.3z" />
+    <div class="controls">
+        <button class="btn-speak">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 37.3 32" width="37.34" height="32" xml:space="preserve">
+                <path fill="#fff" class="bullet" d="M13.3,13.3c0,0.7-0.3,1.4-0.8,1.9C12,15.7,11.4,16,10.7,16c-0.7,0-1.4-0.3-1.9-0.8C8.3,14.7,8,14.1,8,13.3 s0.3-1.4,0.8-1.9c0.5-0.5,1.1-0.8,1.9-0.8c0.7,0,1.4,0.3,1.9,0.8C13.1,12,13.3,12.6,13.3,13.3z" />
+                <path fill="#fff" class="bullet" d="M21.3,13.3c0,0.7-0.3,1.4-0.8,1.9S19.4,16,18.7,16c-0.7,0-1.4-0.3-1.9-0.8c-0.5-0.5-0.8-1.1-0.8-1.9s0.3-1.4,0.8-1.9 c0.5-0.5,1.1-0.8,1.9-0.8c0.7,0,1.4,0.3,1.9,0.8C21.1,12,21.3,12.6,21.3,13.3z" />
+                <path fill="#fff" class="bullet" d="M29.3,13.3c0,0.7-0.3,1.4-0.8,1.9S27.4,16,26.7,16c-0.7,0-1.4-0.3-1.9-0.8c-0.5-0.5-0.8-1.1-0.8-1.9s0.3-1.4,0.8-1.9 c0.5-0.5,1.1-0.8,1.9-0.8c0.7,0,1.4,0.3,1.9,0.8C29.1,12,29.3,12.6,29.3,13.3z" />
 
-                    <path fill="#fff" d="M35.9,8.2c-1-1.6-2.3-3.1-4-4.3c-1.7-1.2-3.7-2.1-6-2.8C23.6,0.4,21.2,0,18.7,0s-4.9,0.4-7.2,1.1c-2.3,0.7-4.3,1.6-6,2.8 s-3,2.6-4,4.3C0.5,9.8,0,11.5,0,13.3c0,2.1,0.6,4,1.9,5.9s3,3.3,5.2,4.6c-0.2,0.6-0.3,1.1-0.5,1.6c-0.2,0.5-0.4,0.9-0.6,1.2 c-0.2,0.3-0.4,0.7-0.7,1.1C5,28,4.8,28.3,4.6,28.5s-0.4,0.4-0.7,0.8c-0.3,0.4-0.5,0.6-0.6,0.7l-0.2,0.2l-0.1,0.2l-0.1,0.2 c-0.1,0.1-0.1,0.2-0.1,0.2c0,0,0,0.1,0,0.2c0,0.1,0,0.2,0,0.2v0c0.1,0.2,0.2,0.4,0.3,0.6C3.2,31.9,3.4,32,3.6,32h0.1 c0.9-0.1,1.7-0.3,2.4-0.5c3.6-0.9,6.8-2.6,9.6-5c1,0.1,2,0.2,3,0.2c3.4,0,6.5-0.6,9.4-1.8c2.9-1.2,5.1-2.8,6.8-4.9 c1.7-2,2.5-4.3,2.5-6.7C37.3,11.5,36.8,9.8,35.9,8.2z M32.5,18.6c-1.5,1.6-3.4,2.9-5.9,3.9S21.5,24,18.7,24 c-0.8,0-1.8-0.1-2.7-0.2l-1.2-0.1l-0.9,0.8c-1.7,1.5-3.6,2.7-5.7,3.6c0.6-1.1,1.1-2.3,1.5-3.6l0.6-2l-1.8-1 c-1.8-1-3.2-2.2-4.2-3.7c-1-1.4-1.5-2.9-1.5-4.4c0-1.9,0.7-3.7,2.2-5.3c1.5-1.6,3.4-2.9,5.9-3.9c2.5-1,5.1-1.4,7.9-1.4 c2.8,0,5.5,0.5,7.9,1.4S31,6.4,32.5,8c1.5,1.6,2.2,3.4,2.2,5.3S33.9,17,32.5,18.6z" />
-                </svg>
-            </button>
-            <button id="play" class="btn-play" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 14 14">
-                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M1.5 12.35a1.14 1.14 0 0 0 .63 1a1.24 1.24 0 0 0 1.22 0L12 8a1.11 1.11 0 0 0 0-2L3.35.69a1.24 1.24 0 0 0-1.22 0a1.14 1.14 0 0 0-.63 1Z" />
-                </svg></button>
-        </div>
-
-
+                <path fill="#fff" d="M35.9,8.2c-1-1.6-2.3-3.1-4-4.3c-1.7-1.2-3.7-2.1-6-2.8C23.6,0.4,21.2,0,18.7,0s-4.9,0.4-7.2,1.1c-2.3,0.7-4.3,1.6-6,2.8 s-3,2.6-4,4.3C0.5,9.8,0,11.5,0,13.3c0,2.1,0.6,4,1.9,5.9s3,3.3,5.2,4.6c-0.2,0.6-0.3,1.1-0.5,1.6c-0.2,0.5-0.4,0.9-0.6,1.2 c-0.2,0.3-0.4,0.7-0.7,1.1C5,28,4.8,28.3,4.6,28.5s-0.4,0.4-0.7,0.8c-0.3,0.4-0.5,0.6-0.6,0.7l-0.2,0.2l-0.1,0.2l-0.1,0.2 c-0.1,0.1-0.1,0.2-0.1,0.2c0,0,0,0.1,0,0.2c0,0.1,0,0.2,0,0.2v0c0.1,0.2,0.2,0.4,0.3,0.6C3.2,31.9,3.4,32,3.6,32h0.1 c0.9-0.1,1.7-0.3,2.4-0.5c3.6-0.9,6.8-2.6,9.6-5c1,0.1,2,0.2,3,0.2c3.4,0,6.5-0.6,9.4-1.8c2.9-1.2,5.1-2.8,6.8-4.9 c1.7-2,2.5-4.3,2.5-6.7C37.3,11.5,36.8,9.8,35.9,8.2z M32.5,18.6c-1.5,1.6-3.4,2.9-5.9,3.9S21.5,24,18.7,24 c-0.8,0-1.8-0.1-2.7-0.2l-1.2-0.1l-0.9,0.8c-1.7,1.5-3.6,2.7-5.7,3.6c0.6-1.1,1.1-2.3,1.5-3.6l0.6-2l-1.8-1 c-1.8-1-3.2-2.2-4.2-3.7c-1-1.4-1.5-2.9-1.5-4.4c0-1.9,0.7-3.7,2.2-5.3c1.5-1.6,3.4-2.9,5.9-3.9c2.5-1,5.1-1.4,7.9-1.4 c2.8,0,5.5,0.5,7.9,1.4S31,6.4,32.5,8c1.5,1.6,2.2,3.4,2.2,5.3S33.9,17,32.5,18.6z" />
+            </svg>
+        </button>
+        <button id="play" class="btn-play" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 14 14">
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M1.5 12.35a1.14 1.14 0 0 0 .63 1a1.24 1.24 0 0 0 1.22 0L12 8a1.11 1.11 0 0 0 0-2L3.35.69a1.24 1.24 0 0 0-1.22 0a1.14 1.14 0 0 0-.63 1Z" />
+            </svg></button>
     </div>
 </section>
 
@@ -300,7 +279,9 @@
 
             <img src="" class="cloud">
         </div>
+        
         <hr>
+
         <div class="geoloc" id="locate">
             <div class="geoloc-city"></div>
             <div class="geoloc-lat"></div>
@@ -313,38 +294,13 @@
 
         <hr>
 
-        <div id="friends">
-            <h3>Get friend position</h3>
-            <!-- https://github.com/mdoudy90/find-my-friends -->
-            <ul>
-                <li>
-                    <h3>Gerard picsum</h3>
-                    <h4>Paris</h4>
-                    <div class="lng">55.234</div>
-                    <div class="lat">5.234</div>
-                </li>
-            </ul>
-        </div>
-
-        <hr>
-
         <div id="speed">
-            <div class="speed">20<small>km/h</small> </div>
+            <div class="speed"><span>0</span><small>km/h</small> </div>
 
-            <svg class="gauge" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 300 100" height="80">
-                <g fill="#fff">
-                    <rect y="90" width="29" height="10" />
-                    <rect x="30" y="80" width="29" height="20" />
-                    <rect x="60" y="70" width="29" height="30" />
-                    <rect x="90" y="60" width="29" height="40" />
-                    <rect x="120" y="50" width="29" height="50" />
-                    <rect x="150" y="40" width="29" height="60" />
-                    <rect x="180" y="30" width="29" height="70" />
-                    <rect x="210" y="20" width="29" height="80" />
-                    <rect x="240" y="10" width="29" height="90" />
-                    <rect x="270" width="29" height="100" />
-                </g>
-            </svg>
+            <div class="maxspeed">Vitesse max: <span>0</span><small>km/h</small></div>
+
+            <div class="averagespeed">Vitesse moyenne: <span>0</span><small>km/h</small></div>
+
             <!-- https://enjeck.com/blog/distance-two-locations/ -->
             <div class="distance"></div>
             <button class="btn-speed"></button>
@@ -383,14 +339,7 @@
             </li>
 
             <li>
-                <button value="locate">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 26 26"><path fill="#000" d="M12.906-.031a1 1 0 0 0-.125.031A1 1 0 0 0 12 1v1.063C6.737 2.54 2.54 6.737 2.062 12H1a1 1 0 0 0-.094 0A1.001 1.001 0 0 0 1 14h1.063c.477 5.263 4.674 9.46 9.937 9.938V25a1 1 0 1 0 2 0v-1.063c5.263-.477 9.46-4.674 9.938-9.937H25a1 1 0 1 0 0-2h-1.063C23.46 6.737 19.264 2.54 14 2.062V1a1 1 0 0 0-1.094-1.031zM12 5.062V6a1 1 0 1 0 2 0v-.938A7.986 7.986 0 0 1 20.938 12H20a1 1 0 0 0-.094 0A1.001 1.001 0 0 0 20 14h.938A7.986 7.986 0 0 1 14 20.938V20a1 1 0 0 0-1.219-1A1 1 0 0 0 12 20v.938A7.986 7.986 0 0 1 5.062 14H6a1 1 0 1 0 0-2h-.938A7.986 7.986 0 0 1 12 5.062z"/></svg>
-                </button>
-            </li>
-
-
-            <li>
-                <button value="meteo">
+                <button value="geoloc">
                     <svg xmlns="http://www.w3.org/2000/svg" width="36.58" height="32" viewBox="0 0 512 448">
                         <path fill="#000" d="M427 171v-11q0-65-47.5-112.5T267 0q-57 0-101 35.5T111 126q-48 6-79.5 42.5T0 254q0 53 38 91.5t90 38.5h299q37-8 61-38t24-69q0-38-24-68.5T427 171zm0 170H128q-35 0-60-26t-25-61q0-31 25.5-54.5T128 171q4 0 11-11l10-32q8-39 41.5-62T267 43q48 0 82.5 34.5T384 160v32q0 9 6.5 15t14.5 6h13q22 5 36.5 23t14.5 41t-11 41.5t-31 22.5z" />
                     </svg>

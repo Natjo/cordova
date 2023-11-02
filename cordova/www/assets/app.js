@@ -39,8 +39,6 @@
         for (let groupName in muteGroups) {
           this.createMuteGroup(groupName, muteGroups[groupName]);
         }
-        var masterSlider = Object.create(GainSlider);
-        masterSlider.connect(document.querySelector('#master'), this.output.gain);
       },
       createMuteGroup: function (name, padNames) {
         let pads = {};
@@ -198,32 +196,6 @@
               this.pads[name].mute();
             }
           }
-        }
-      }
-    };
-    var GainSlider = {
-      input: null,
-      connect: function (input, target) {
-        this.setTarget(target);
-        this.setInput(input);
-      },
-      setTarget: function (gain) {
-        this.target = gain;
-      },
-      setInput: function (input) {
-        if (this.input) {
-          this.input.removeEventListener('input', this.handleInput.bind(this), false);
-        }
-        this.input = input;
-        this.input.addEventListener('input', this.handleInput.bind(this), false);
-      },
-      handleInput: function (inputEvent) {
-        if (inputEvent.target.value > 1) {
-          this.target.value = 1;
-        } else if (inputEvent.target.value < -1) {
-          this.target.value = -1;
-        } else {
-          this.target.value = inputEvent.target.value;
         }
       }
     };
@@ -448,9 +420,14 @@
       dlKilometers = distanceBetweenPoints(latRads, longRads, london.latRads, london.longRads);
       return dlKilometers.toFixed(2);
     }
+    let maxspeed = 0;
     function watch(pos) {
       const crd = pos.coords;
-      el.querySelector(".speed").innerHTML = crd.latitude;
+      if (crd.speed > maxspeed) {
+        maxspeed = crd.speed.toFixed(2);
+      }
+      el.querySelector(".speed span").innerHTML = crd.speed.toFixed(2);
+      el.querySelector(".maxspeed span").innerHTML = maxspeed;
       el.querySelector(".distance").innerHTML = `${distanceBetween(pos)} km`;
     }
     const btn_speed = el.querySelector('.btn-speed');
@@ -590,25 +567,6 @@
   window.strate_sampler = strate_sampler;
 })();
 (function () {
-  function geoloc(el) {
-    const options = {
-      enableHighAccuracy: true,
-      timeout: 5000,
-      maximumAge: 0
-    };
-    function success(pos) {
-      const crd = pos.coords;
-      el.querySelector('.geoloc-lat').innerHTML = `Latitude : ${crd.latitude}`;
-      el.querySelector('.geoloc-lng').innerHTML = `Longitude : ${crd.longitude}`;
-      el.querySelector('.geoloc-altitude').innerHTML = `Altitude : ${crd.altitude}`;
-    }
-    function error(err) {
-      console.warn(`ERROR(${err.code}): ${err.message}`);
-    }
-    el.querySelector('.btn-location').onclick = () => {
-      navigator.geolocation.getCurrentPosition(success, error, options);
-    };
-  }
   function recognition(el) {
     var settings = {
       language: "fr-FR",
@@ -664,7 +622,7 @@
           return +1;
         }
       });
-      const selectedIndex = voiceSelect.selectedIndex < 0 ? 8 : voiceSelect.selectedIndex;
+      const selectedIndex = voiceSelect.selectedIndex < 0 ? 4 : voiceSelect.selectedIndex;
       voiceSelect.innerHTML = "";
       for (let i = 0; i < voices.length; i++) {
         const option = document.createElement("option");
@@ -714,7 +672,6 @@
   function strate_speech(el) {
     recognition(el);
     synthesis(el);
-    geoloc(el);
     this.start = () => {};
   }
   window.strate_speech = strate_speech;
