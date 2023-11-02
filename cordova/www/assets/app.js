@@ -622,7 +622,7 @@
           return +1;
         }
       });
-      const selectedIndex = voiceSelect.selectedIndex < 0 ? 4 : voiceSelect.selectedIndex;
+      const selectedIndex = voiceSelect.selectedIndex < 0 ? 7 : voiceSelect.selectedIndex;
       voiceSelect.innerHTML = "";
       for (let i = 0; i < voices.length; i++) {
         const option = document.createElement("option");

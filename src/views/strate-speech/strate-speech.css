@@ -72,7 +72,6 @@
         margin-bottom: 20px;
     }
 
-
     .btn-play {
         height: 80px;
         width: 80px;
@@ -85,23 +84,25 @@
         ;
     }
 
-    select{
+    select {
         font-family: inherit;
         font-size: inherit;
     }
+
     textarea {
         margin-top: 20px;
         width: 100%;
         height: 230px;
         font-size: inherit;
         font-family: inherit;
+        box-sizing: border-box;
     }
 
     img {
         width: 100%;
         max-width: 200px;
         justify-self: center;
-        margin-top: auto;
+        margin-top: 0 auto;
     }
 
     .controls {

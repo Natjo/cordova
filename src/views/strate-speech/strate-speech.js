@@ -122,7 +122,7 @@
                 }
             });
 
-            const selectedIndex = voiceSelect.selectedIndex < 0 ? 4 : voiceSelect.selectedIndex;
+            const selectedIndex = voiceSelect.selectedIndex < 0 ? 7 : voiceSelect.selectedIndex;
 
             voiceSelect.innerHTML = "";
 
@@ -149,6 +149,7 @@
             }
 
             if (inputTxt.value !== "") {
+     
                 const utterThis = new SpeechSynthesisUtterance(inputTxt.value);
                 utterThis.lang = lang;
 
@@ -191,7 +192,6 @@
         this.start = () => {
         }
     }
-
-
+    
     window.strate_speech = strate_speech;
 })();
